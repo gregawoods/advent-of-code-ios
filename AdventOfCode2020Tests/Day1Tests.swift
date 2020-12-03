@@ -10,23 +10,23 @@ import XCTest
 
 class Day1Tests: XCTestCase {
 
+    var day: Day1!
+
     override func setUpWithError() throws {
-        
+        self.day = Day1()
     }
-    
+
     func testCalculate() throws {
-        let day = Day1()
         let result = day.calculate()
-        
+
         XCTAssertTrue(result > 0)
-        print("Day1 Part 1: \(result)")
+        print("Day 1 Part 1: \(result)")
     }
-    
+
     func testCalculateV2() throws {
-        let day = Day1()
         let result = day.calculatePart2()
 
         XCTAssertTrue(result > 0)
-        print("Day1 Part 2: \(result)")
+        print("Day 1 Part 2: \(result)")
     }
 }

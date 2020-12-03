@@ -9,7 +9,7 @@ import XCTest
 @testable import AdventOfCode2020
 
 class Day2Tests: XCTestCase {
-    
+
     var day: Day2!
 
     override func setUpWithError() throws {

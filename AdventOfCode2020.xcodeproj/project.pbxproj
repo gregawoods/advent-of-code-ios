@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,6 +48,7 @@
 		C36648F6257878CB008F719C /* Day2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day2.swift; sourceTree = "<group>"; };
 		C36648FA257879EE008F719C /* Day2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day2Tests.swift; sourceTree = "<group>"; };
 		C36648FE25787A66008F719C /* day2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day2.txt; sourceTree = "<group>"; };
+		C366490225788848008F719C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +74,7 @@
 			children = (
 				C36648AB25787142008F719C /* AdventOfCode2020 */,
 				C36648BD25787145008F719C /* AdventOfCode2020Tests */,
+				C366490225788848008F719C /* README.md */,
 				C36648AA25787142008F719C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -153,6 +155,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C36648CE25787145008F719C /* Build configuration list for PBXNativeTarget "AdventOfCode2020" */;
 			buildPhases = (
+				C366490525788A09008F719C /* Run Swiftlint */,
 				C36648A525787142008F719C /* Sources */,
 				C36648A625787142008F719C /* Frameworks */,
 				C36648A725787142008F719C /* Resources */,
@@ -241,6 +244,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C366490525788A09008F719C /* Run Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Swiftlint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C36648A525787142008F719C /* Sources */ = {

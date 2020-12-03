@@ -8,9 +8,9 @@
 import Foundation
 
 struct Day2 {
-    
+
     let passwords: [Password]
-    
+
     init() {
         self.passwords = FileReader(file: "day2").lines.map({ Password($0) })
     }
@@ -18,7 +18,7 @@ struct Day2 {
     func calculate() -> Int {
         return passwords.filter({ $0.valid }).count
     }
-    
+
     func calculatePart2() -> Int {
         return passwords.filter({ $0.validPart2 }).count
     }
@@ -29,7 +29,7 @@ struct Day2 {
         let char: String
         let min: Int
         let max: Int
-        
+
         init(_ input: String) {
             var parts = input.components(separatedBy: " ")
             self.char = parts[1].replacingOccurrences(of: ":", with: "")
@@ -47,7 +47,7 @@ struct Day2 {
 
         var validPart2: Bool {
             let array = Array(password)
-            
+
             let minVal = String(array[min-1])
             let maxVal = String(array[max-1])
 

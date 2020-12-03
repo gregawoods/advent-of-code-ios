@@ -1,0 +1,6 @@
+#!/bin/bash
+
+xcodebuild test -project AdventOfCode2020.xcodeproj \
+  -scheme AdventOfCode2020 \
+  -destination 'platform=iOS Simulator,name=iPhone 12'
+
