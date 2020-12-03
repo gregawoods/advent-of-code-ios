@@ -16,6 +16,9 @@
 		C36648E62578733A008F719C /* day1.txt in Resources */ = {isa = PBXBuildFile; fileRef = C36648E52578733A008F719C /* day1.txt */; };
 		C36648EB25787359008F719C /* Day1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36648EA25787359008F719C /* Day1.swift */; };
 		C36648F1257874A3008F719C /* Day1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36648F0257874A3008F719C /* Day1Tests.swift */; };
+		C36648F7257878CB008F719C /* Day2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36648F6257878CB008F719C /* Day2.swift */; };
+		C36648FB257879EE008F719C /* Day2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36648FA257879EE008F719C /* Day2Tests.swift */; };
+		C36648FF25787A66008F719C /* day2.txt in Resources */ = {isa = PBXBuildFile; fileRef = C36648FE25787A66008F719C /* day2.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,9 @@
 		C36648E52578733A008F719C /* day1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day1.txt; sourceTree = "<group>"; };
 		C36648EA25787359008F719C /* Day1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day1.swift; sourceTree = "<group>"; };
 		C36648F0257874A3008F719C /* Day1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day1Tests.swift; sourceTree = "<group>"; };
+		C36648F6257878CB008F719C /* Day2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day2.swift; sourceTree = "<group>"; };
+		C36648FA257879EE008F719C /* Day2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day2Tests.swift; sourceTree = "<group>"; };
+		C36648FE25787A66008F719C /* day2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day2.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,7 @@
 				C36648C025787145008F719C /* Info.plist */,
 				C36648BE25787145008F719C /* AdventOfCode2020Tests.swift */,
 				C36648F0257874A3008F719C /* Day1Tests.swift */,
+				C36648FA257879EE008F719C /* Day2Tests.swift */,
 			);
 			path = AdventOfCode2020Tests;
 			sourceTree = "<group>";
@@ -125,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				C36648E52578733A008F719C /* day1.txt */,
+				C36648FE25787A66008F719C /* day2.txt */,
 			);
 			path = input;
 			sourceTree = "<group>";
@@ -133,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				C36648EA25787359008F719C /* Day1.swift */,
+				C36648F6257878CB008F719C /* Day2.swift */,
 			);
 			path = days;
 			sourceTree = "<group>";
@@ -219,6 +228,7 @@
 			files = (
 				C36648B425787145008F719C /* Preview Assets.xcassets in Resources */,
 				C36648E62578733A008F719C /* day1.txt in Resources */,
+				C36648FF25787A66008F719C /* day2.txt in Resources */,
 				C36648B125787145008F719C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C36648EB25787359008F719C /* Day1.swift in Sources */,
+				C36648F7257878CB008F719C /* Day2.swift in Sources */,
 				C36648E12578726F008F719C /* FileReader.swift in Sources */,
 				C36648AF25787142008F719C /* ContentView.swift in Sources */,
 				C36648AD25787142008F719C /* AdventOfCode2020App.swift in Sources */,
@@ -250,6 +261,7 @@
 			files = (
 				C36648F1257874A3008F719C /* Day1Tests.swift in Sources */,
 				C36648BF25787145008F719C /* AdventOfCode2020Tests.swift in Sources */,
+				C36648FB257879EE008F719C /* Day2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
