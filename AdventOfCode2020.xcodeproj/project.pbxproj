@@ -12,18 +12,10 @@
 		C36648B125787145008F719C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C36648B025787145008F719C /* Assets.xcassets */; };
 		C36648B425787145008F719C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C36648B325787145008F719C /* Preview Assets.xcassets */; };
 		C36648BF25787145008F719C /* AdventOfCode2020Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36648BE25787145008F719C /* AdventOfCode2020Tests.swift */; };
-		C36648CA25787145008F719C /* AdventOfCode2020UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36648C925787145008F719C /* AdventOfCode2020UITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		C36648BB25787145008F719C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C36648A125787142008F719C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C36648A825787142008F719C;
-			remoteInfo = AdventOfCode2020;
-		};
-		C36648C625787145008F719C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C36648A125787142008F719C /* Project object */;
 			proxyType = 1;
@@ -42,9 +34,6 @@
 		C36648BA25787145008F719C /* AdventOfCode2020Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdventOfCode2020Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C36648BE25787145008F719C /* AdventOfCode2020Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventOfCode2020Tests.swift; sourceTree = "<group>"; };
 		C36648C025787145008F719C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C36648C525787145008F719C /* AdventOfCode2020UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdventOfCode2020UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C36648C925787145008F719C /* AdventOfCode2020UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventOfCode2020UITests.swift; sourceTree = "<group>"; };
-		C36648CB25787145008F719C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,13 +51,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C36648C225787145008F719C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,7 +59,6 @@
 			children = (
 				C36648AB25787142008F719C /* AdventOfCode2020 */,
 				C36648BD25787145008F719C /* AdventOfCode2020Tests */,
-				C36648C825787145008F719C /* AdventOfCode2020UITests */,
 				C36648AA25787142008F719C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,7 +68,6 @@
 			children = (
 				C36648A925787142008F719C /* AdventOfCode2020.app */,
 				C36648BA25787145008F719C /* AdventOfCode2020Tests.xctest */,
-				C36648C525787145008F719C /* AdventOfCode2020UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,15 +99,6 @@
 				C36648C025787145008F719C /* Info.plist */,
 			);
 			path = AdventOfCode2020Tests;
-			sourceTree = "<group>";
-		};
-		C36648C825787145008F719C /* AdventOfCode2020UITests */ = {
-			isa = PBXGroup;
-			children = (
-				C36648C925787145008F719C /* AdventOfCode2020UITests.swift */,
-				C36648CB25787145008F719C /* Info.plist */,
-			);
-			path = AdventOfCode2020UITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,24 +139,6 @@
 			productReference = C36648BA25787145008F719C /* AdventOfCode2020Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C36648C425787145008F719C /* AdventOfCode2020UITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C36648D425787145008F719C /* Build configuration list for PBXNativeTarget "AdventOfCode2020UITests" */;
-			buildPhases = (
-				C36648C125787145008F719C /* Sources */,
-				C36648C225787145008F719C /* Frameworks */,
-				C36648C325787145008F719C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C36648C725787145008F719C /* PBXTargetDependency */,
-			);
-			name = AdventOfCode2020UITests;
-			productName = AdventOfCode2020UITests;
-			productReference = C36648C525787145008F719C /* AdventOfCode2020UITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -199,10 +152,6 @@
 						CreatedOnToolsVersion = 12.2;
 					};
 					C36648B925787145008F719C = {
-						CreatedOnToolsVersion = 12.2;
-						TestTargetID = C36648A825787142008F719C;
-					};
-					C36648C425787145008F719C = {
 						CreatedOnToolsVersion = 12.2;
 						TestTargetID = C36648A825787142008F719C;
 					};
@@ -223,7 +172,6 @@
 			targets = (
 				C36648A825787142008F719C /* AdventOfCode2020 */,
 				C36648B925787145008F719C /* AdventOfCode2020Tests */,
-				C36648C425787145008F719C /* AdventOfCode2020UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -239,13 +187,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		C36648B825787145008F719C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C36648C325787145008F719C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -272,14 +213,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C36648C125787145008F719C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C36648CA25787145008F719C /* AdventOfCode2020UITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -287,11 +220,6 @@
 			isa = PBXTargetDependency;
 			target = C36648A825787142008F719C /* AdventOfCode2020 */;
 			targetProxy = C36648BB25787145008F719C /* PBXContainerItemProxy */;
-		};
-		C36648C725787145008F719C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C36648A825787142008F719C /* AdventOfCode2020 */;
-			targetProxy = C36648C625787145008F719C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -500,46 +428,6 @@
 			};
 			name = Release;
 		};
-		C36648D525787145008F719C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YJ44Y6RULK;
-				INFOPLIST_FILE = AdventOfCode2020UITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.undefinedbehavior.AdventOfCode2020UITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AdventOfCode2020;
-			};
-			name = Debug;
-		};
-		C36648D625787145008F719C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YJ44Y6RULK;
-				INFOPLIST_FILE = AdventOfCode2020UITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.undefinedbehavior.AdventOfCode2020UITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AdventOfCode2020;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -566,15 +454,6 @@
 			buildConfigurations = (
 				C36648D225787145008F719C /* Debug */,
 				C36648D325787145008F719C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C36648D425787145008F719C /* Build configuration list for PBXNativeTarget "AdventOfCode2020UITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C36648D525787145008F719C /* Debug */,
-				C36648D625787145008F719C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
