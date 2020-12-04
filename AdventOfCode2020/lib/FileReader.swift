@@ -30,6 +30,15 @@ struct FileReader {
         }
     }
 
+    var chunksByNewline: [String] {
+        let trim = CharacterSet(arrayLiteral: "\n", " ")
+        if let content = fileContents {
+            return content.components(separatedBy: "\n\n").map { $0.trimmingCharacters(in: trim) }
+        } else {
+            return []
+        }
+    }
+
     var arrayOfInts: [Int] {
         return lines.map { Int($0) ?? 0 }
     }
