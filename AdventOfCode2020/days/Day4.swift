@@ -18,11 +18,11 @@ struct Day4: DayProtocol {
     }
 
     func calculatePart1() -> Int {
-        return passports.filter { $0.hasRequiredFields }.count
+        return passports.countWhere { $0.hasRequiredFields }
     }
 
     func calculatePart2() -> Int {
-        return passports.filter { $0.hasValidData }.count
+        return passports.countWhere { $0.hasValidData }
     }
 
     typealias Validator = (String) -> Bool

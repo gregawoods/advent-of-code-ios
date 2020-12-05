@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Day1 {
+struct Day1: DayProtocol {
 
     let lines: [Int]
 
@@ -15,7 +15,7 @@ struct Day1 {
         self.lines = FileReader(file: "day1").arrayOfInts
     }
 
-    func calculate() -> Int {
+    func calculatePart1() -> Int {
         for x in lines {
             let y = 2020 - x
             if lines.contains(y) {

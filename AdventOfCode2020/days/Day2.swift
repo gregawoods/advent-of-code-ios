@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Day2 {
+struct Day2: DayProtocol {
 
     let passwords: [Password]
 
@@ -15,12 +15,12 @@ struct Day2 {
         self.passwords = FileReader(file: "day2").lines.map({ Password($0) })
     }
 
-    func calculate() -> Int {
-        return passwords.filter({ $0.valid }).count
+    func calculatePart1() -> Int {
+        return passwords.countWhere { $0.valid }
     }
 
     func calculatePart2() -> Int {
-        return passwords.filter({ $0.validPart2 }).count
+        return passwords.countWhere { $0.validPart2 }
     }
 
     struct Password {
