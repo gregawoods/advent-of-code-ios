@@ -37,9 +37,16 @@ struct Day5: DayProtocol {
     }
 
     struct BoardingPass {
+//        let seatId: Int
+//        init(input: String) {
+//            let binary = input.replacingOccurrences(of: "", with: "")
+//
+//            self.seatId = 1
+//        }
+
         let source: String
-        var row = 0
-        var col = 0
+        private var row = 0
+        private var col = 0
 
         init(input: String) {
             self.source = input

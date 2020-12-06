@@ -12,3 +12,9 @@ extension Array {
         return filter(finder).count
     }
 }
+
+extension Array where Element: Numeric {
+    func sum() -> Element {
+        return reduce(0) { $0 + $1 }
+    }
+}
