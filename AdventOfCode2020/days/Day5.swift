@@ -37,51 +37,15 @@ struct Day5: DayProtocol {
     }
 
     struct BoardingPass {
-//        let seatId: Int
-//        init(input: String) {
-//            let binary = input.replacingOccurrences(of: "", with: "")
-//
-//            self.seatId = 1
-//        }
-
-        let source: String
-        private var row = 0
-        private var col = 0
+        let seatId: Int
 
         init(input: String) {
-            self.source = input
+            let binary = input.replacingOccurrences(of: "F", with: "0")
+                .replacingOccurrences(of: "B", with: "1")
+                .replacingOccurrences(of: "L", with: "0")
+                .replacingOccurrences(of: "R", with: "1")
 
-            var rowMin = 1
-            var rowMax = 128
-
-            for char in input.prefix(7) {
-                if char == "F" {
-                    rowMax -= (rowMax - rowMin + 1) / 2
-                } else {
-                    rowMin += (rowMax - rowMin + 1) / 2
-                }
-                if rowMin == rowMax {
-                    self.row = rowMin - 1
-                }
-            }
-
-            var colMin = 1
-            var colMax = 8
-
-            for char in input.suffix(3) {
-                if char == "L" {
-                    colMax -= (colMax - colMin + 1) / 2
-                } else {
-                    colMin += (colMax - colMin + 1) / 2
-                }
-                if colMin == colMax {
-                    self.col = colMin - 1
-                }
-            }
-        }
-
-        var seatId: Int {
-            return (row * 8) + col
+            self.seatId = Int(binary, radix: 2)!
         }
     }
 }

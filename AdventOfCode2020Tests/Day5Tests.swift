@@ -11,8 +11,9 @@ import XCTest
 class Day5Tests: XCTestCase {
 
     func testSeatId() throws {
-        let pass = Day5.BoardingPass(input: "BFFFBBFRRR")
-        XCTAssertEqual(pass.seatId, 567)
+        XCTAssertEqual(Day5.BoardingPass(input: "BFFFBBFRRR").seatId, 567)
+        XCTAssertEqual(Day5.BoardingPass(input: "FFFBBBFRRR").seatId, 119)
+        XCTAssertEqual(Day5.BoardingPass(input: "BBFFBBFRLL").seatId, 820)
     }
 
     func testDay5Part1() throws {
