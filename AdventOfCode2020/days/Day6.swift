@@ -27,14 +27,11 @@ struct Day6: DayProtocol {
         let countAll: Int
 
         init(input: String) {
-            var people = input.components(separatedBy: "\n").map { Array($0) }
-
+            var people = input.components(separatedBy: "\n").map { Set($0) }
             self.count = Set(people.flatMap { $0 }).count
 
-            let initial = Set(people.popLast()!)
-            self.countAll = people.reduce(initial) { (result, current) in
-                return result.intersection(Set(current))
-            }.count
+            let initial = people.popLast()!
+            self.countAll = people.reduce(initial) { $0.intersection($1) }.count
         }
     }
 }

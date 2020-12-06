@@ -45,13 +45,13 @@ class Day6Tests: XCTestCase {
 
     func testDay6Part1() throws {
         let result = Day6().calculatePart1()
-        XCTAssertTrue(result > 0)
+        XCTAssertEqual(result, 6782)
         print("Day 6 Part 1: \(result)")
     }
 
     func testDay6Part2() throws {
         let result = Day6().calculatePart2()
-        XCTAssertTrue(result > 0)
+        XCTAssertEqual(result, 3596)
         print("Day 6 Part 2: \(result)")
     }
 }
