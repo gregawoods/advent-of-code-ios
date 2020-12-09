@@ -34,13 +34,11 @@ struct Day7: DayProtocol {
     func searchChildren(haystack: [String], needle: String) -> Bool {
         if haystack.contains("shiny gold") {
             return true
-        } else if haystack.count > 0 {
-            return haystack.contains { (color) -> Bool in
-                let bag = findBagByColor(color)
-                return searchChildren(haystack: bag.holdColors, needle: needle)
-            }
         }
-        return false
+        return haystack.contains { (color) -> Bool in
+            let bag = findBagByColor(color)
+            return searchChildren(haystack: bag.holdColors, needle: needle)
+        }
     }
 
     func calculatePart2() -> Int {
