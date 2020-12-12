@@ -8,18 +8,20 @@
 import Foundation
 
 struct FileReader {
-    let path: String
+    let fileContents: String?
 
     init(file: String) {
-        self.path = Bundle.main.path(forResource: file, ofType: "txt")!
+        do {
+            let path = Bundle.main.path(forResource: file, ofType: "txt")!
+            let data = try String(contentsOfFile: path, encoding: .utf8)
+            self.fileContents = data
+        } catch {
+            self.fileContents = nil
+        }
     }
 
-    var fileContents: String? {
-        do {
-            return try String(contentsOfFile: path, encoding: .utf8)
-        } catch {
-            return nil
-        }
+    init(raw: String?) {
+        self.fileContents = raw
     }
 
     var lines: [String] {

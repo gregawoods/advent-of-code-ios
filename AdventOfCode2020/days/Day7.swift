@@ -9,21 +9,17 @@ import Foundation
 
 struct Day7: DayProtocol {
 
-    let bags: [BagDef]
-
-    init() {
-        self.bags = FileReader(file: "day7").lines.map { BagDef(input: $0) }
+    func findBagByColor(_ color: String, _ allBags: [BagDef]) -> BagDef {
+        return allBags.first { $0.color == color }!
     }
 
-    func findBagByColor(_ color: String) -> BagDef {
-        return self.bags.first { $0.color == color }!
-    }
-
-    func calculatePart1() -> Int {
+    func calculatePart1(_ input: [String]) -> Int {
         var count = 0
 
+        let bags = input.map { BagDef($0) }
+        
         bags.forEach { (bag) in
-            if searchChildren(haystack: bag.holdColors, needle: "shiny gold") {
+            if searchChildren(haystack: bag.holdColors, needle: "shiny gold", allBags: bags) {
                 count += 1
             }
         }
@@ -31,30 +27,32 @@ struct Day7: DayProtocol {
         return count
     }
 
-    func searchChildren(haystack: [String], needle: String) -> Bool {
+    func searchChildren(haystack: [String], needle: String, allBags: [BagDef]) -> Bool {
         if haystack.contains("shiny gold") {
             return true
         }
         return haystack.contains { (color) -> Bool in
-            let bag = findBagByColor(color)
-            return searchChildren(haystack: bag.holdColors, needle: needle)
+            let bag = findBagByColor(color, allBags)
+            return searchChildren(haystack: bag.holdColors, needle: needle, allBags: allBags)
         }
     }
 
-    func calculatePart2() -> Int {
-        let goldBag = findBagByColor("shiny gold")
+    func calculatePart2(_ input: [String]) -> Int {
+        let bags = input.map { BagDef($0) }
 
-        return countChildren(colors: goldBag.holds)
+        let goldBag = findBagByColor("shiny gold", bags)
+
+        return countChildren(colors: goldBag.holds, allBags: bags)
     }
 
-    func countChildren(colors: [String: Int]) -> Int {
+    func countChildren(colors: [String: Int], allBags: [BagDef]) -> Int {
         var total = 0
 
         for (color, count) in colors {
             total += count
 
-            let bag = findBagByColor(color)
-            let childCount = countChildren(colors: bag.holds)
+            let bag = findBagByColor(color, allBags)
+            let childCount = countChildren(colors: bag.holds, allBags: allBags)
             total += (count * childCount)
         }
 
@@ -65,7 +63,7 @@ struct Day7: DayProtocol {
         let color: String
         var holds: [String: Int]
 
-        init(input: String) {
+        init(_ input: String) {
             self.color = input.components(separatedBy: " bags").first!
             self.holds = [:]
 

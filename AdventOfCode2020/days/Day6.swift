@@ -8,25 +8,24 @@
 import Foundation
 
 struct Day6: DayProtocol {
-    let groups: [GroupAnswers]
 
-    init() {
-        self.groups = FileReader(file: "day6").chunksByNewline.map { GroupAnswers(input: $0) }
+    func groups(_ input: [String]) -> [GroupAnswers] {
+        return input.map { GroupAnswers($0) }
     }
 
-    func calculatePart1() -> Int {
-        return groups.map { $0.count }.sum()
+    func calculatePart1(_ input: [String]) -> Int {
+        return groups(input).map { $0.count }.sum()
     }
 
-    func calculatePart2() -> Int {
-        return groups.map { $0.countAll }.sum()
+    func calculatePart2(_ input: [String]) -> Int {
+        return groups(input).map { $0.countAll }.sum()
     }
 
     struct GroupAnswers {
         let count: Int
         let countAll: Int
 
-        init(input: String) {
+        init(_ input: String) {
             var people = input.components(separatedBy: "\n").map { Set($0) }
             self.count = Set(people.flatMap { $0 }).count
 

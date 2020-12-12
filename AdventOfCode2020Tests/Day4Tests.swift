@@ -10,15 +10,17 @@ import XCTest
 
 class Day4Tests: XCTestCase {
 
+    let input = FileReader(file: "day4").chunksByNewline
+
     func testDay4Part1() throws {
-        let result = Day4().calculatePart1()
-        XCTAssertTrue(result > 0)
+        let result = Day4().calculatePart1(input)
+        XCTAssertEqual(result, 206)
         print("Day 4 Part 1: \(result)")
     }
 
     func testDay4Part2() throws {
-        let result = Day4().calculatePart2()
-        XCTAssertTrue(result > 0)
+        let result = Day4().calculatePart2(input)
+        XCTAssertEqual(result, 123)
         print("Day 4 Part 2: \(result)")
     }
 

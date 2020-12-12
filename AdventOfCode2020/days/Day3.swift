@@ -9,13 +9,11 @@ import Foundation
 
 struct Day3: DayProtocol {
 
-    let slope = Slope()
-
-    func calculatePart1() -> Int {
-        return slope.countTreesForSlope(colMove: 3, rowMove: 1)
+    func calculatePart1(_ input: [String]) -> Int {
+        return Slope(input).countTreesForSlope(colMove: 3, rowMove: 1)
     }
 
-    func calculatePart2() -> Int {
+    func calculatePart2(_ input: [String]) -> Int {
         let moves = [
             [1, 1],
             [3, 1],
@@ -24,7 +22,7 @@ struct Day3: DayProtocol {
             [1, 2]
         ]
         return moves.reduce(1) { current, moves in
-            let next = slope.countTreesForSlope(colMove: moves[0], rowMove: moves[1])
+            let next = Slope(input).countTreesForSlope(colMove: moves[0], rowMove: moves[1])
             return current * next
         }
     }
@@ -33,8 +31,7 @@ struct Day3: DayProtocol {
         var coords: [[Bool]] = []
         let height: Int
 
-        init() {
-            let lines = FileReader(file: "day3").lines
+        init(_ lines: [String]) {
             self.height = lines.count
 
             var row = 0

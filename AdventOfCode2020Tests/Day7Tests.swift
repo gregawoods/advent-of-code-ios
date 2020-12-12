@@ -10,27 +10,29 @@ import XCTest
 
 class Day7Tests: XCTestCase {
 
+    let input = FileReader(file: "day7").lines
+
     func testBagParsing() throws {
-        let bag = Day7.BagDef(input: "shiny gold bags contain 1 dark olive bag, 2 vibrant plum bags.")
+        let bag = Day7.BagDef("shiny gold bags contain 1 dark olive bag, 2 vibrant plum bags.")
         XCTAssertEqual(bag.color, "shiny gold")
         XCTAssertEqual(bag.holds, [
             "dark olive": 1,
             "vibrant plum": 2
         ])
 
-        let emptyBag = Day7.BagDef(input: "dotted black bags contain no other bags.")
+        let emptyBag = Day7.BagDef("dotted black bags contain no other bags.")
         XCTAssertEqual(emptyBag.color, "dotted black")
         XCTAssertEqual(emptyBag.holds.count, 0)
     }
 
     func testDay7Part1() throws {
-        let result = Day7().calculatePart1()
+        let result = Day7().calculatePart1(input)
         XCTAssertEqual(result, 326)
         print("Day 7 Part 1: \(result)")
     }
 
     func testDay7Part2() throws {
-        let result = Day7().calculatePart2()
+        let result = Day7().calculatePart2(input)
         XCTAssertEqual(result, 5635)
         print("Day 7 Part 2: \(result)")
     }

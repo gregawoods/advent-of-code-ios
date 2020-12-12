@@ -9,14 +9,8 @@ import Foundation
 
 struct Day9: DayProtocol {
 
-    let data: [Int]
-
-    init() {
-        self.data = FileReader(file: "day9").arrayOfInts
-    }
-
-    func calculatePart1() -> Int {
-        return calculateFirstInvalid(data: data, length: 25)
+    func calculatePart1(_ input: [Int]) -> Int {
+        return calculateFirstInvalid(data: input, length: 25)
     }
 
     func calculateFirstInvalid(data: [Int], length: Int) -> Int {
@@ -40,20 +34,18 @@ struct Day9: DayProtocol {
         return false
     }
 
-    func calculatePart2() -> Int {
-        let value = calculateFirstInvalid(data: data, length: 25)
+    func calculatePart2(_ input: [Int]) -> Int {
+        let value = calculateFirstInvalid(data: input, length: 25)
 
-        for length in 2...data.count {
-            print("Length: \(length)")
-
-            for index in 0...(data.count - 1) {
+        for length in 2...input.count {
+            for index in 0...(input.count - 1) {
                 let rangeEnd = index + length - 1
 
-                if rangeEnd >= data.count {
+                if rangeEnd >= input.count {
                     continue
                 }
 
-                let range = Array(data[index...rangeEnd])
+                let range = Array(input[index...rangeEnd])
                 if range.sum() == value {
                     return range.max()! + range.min()!
                 }

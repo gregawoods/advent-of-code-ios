@@ -76,8 +76,10 @@ class Day11Tests: XCTestCase {
         XCTAssertEqual(expected, result)
     }
 
+    let input = FileReader(file: "day11").lines
+
     func testDay11Part1() throws {
-        let result = day.calculatePart1()
+        let result = day.calculatePart1(input)
         print("Day 11 Part 1: \(result)")
         XCTAssertEqual(result, 2321)
     }
@@ -130,7 +132,7 @@ class Day11Tests: XCTestCase {
     }
 
     func testDay11Part2() throws {
-        let result = day.calculatePart2()
+        let result = day.calculatePart2(input)
         print("Day 11 Part 2: \(result)")
         XCTAssertEqual(result, 2102)
     }

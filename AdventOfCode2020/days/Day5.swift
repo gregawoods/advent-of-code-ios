@@ -9,20 +9,16 @@ import Foundation
 
 struct Day5: DayProtocol {
 
-    let passes: [BoardingPass]
-
-    init() {
-        self.passes = FileReader(file: "day5").lines.map { line in
-            BoardingPass(input: line)
-        }
+    func passes(_ input: [String]) -> [BoardingPass] {
+        input.map { BoardingPass($0) }
     }
 
-    func calculatePart1() -> Int {
-        return passes.map { $0.seatId }.max()!
+    func calculatePart1(_ input: [String]) -> Int {
+        return passes(input).map { $0.seatId }.max()!
     }
 
-    func calculatePart2() -> Int {
-        let seatIds = passes.map { $0.seatId }.sorted()
+    func calculatePart2(_ input: [String]) -> Int {
+        let seatIds = passes(input).map { $0.seatId }.sorted()
 
         var lastId = 0
 
@@ -39,7 +35,7 @@ struct Day5: DayProtocol {
     struct BoardingPass {
         let seatId: Int
 
-        init(input: String) {
+        init(_ input: String) {
             let binary = input.replacingOccurrences(of: "F", with: "0")
                 .replacingOccurrences(of: "B", with: "1")
                 .replacingOccurrences(of: "L", with: "0")

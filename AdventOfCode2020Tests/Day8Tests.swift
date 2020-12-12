@@ -22,8 +22,10 @@ class Day8Tests: XCTestCase {
     acc +6
     """.components(separatedBy: "\n")
 
+    let input = FileReader(file: "day8").lines
+
     func testInputParsing() throws {
-        let game = Day8.Game(input: sample)
+        let game = Day8.Game(sample)
         XCTAssertEqual(game.instructions, [
             Day8.Instruction(action: .nop, value: 0),
             Day8.Instruction(action: .acc, value: 1),
@@ -38,13 +40,13 @@ class Day8Tests: XCTestCase {
     }
 
     func testPlay() {
-        var game = Day8.Game(input: sample)
+        var game = Day8.Game(sample)
         game.play()
         XCTAssertEqual(game.accumulator, 5)
     }
 
     func testDay8Part1() throws {
-        let result = Day8().calculatePart1()
+        let result = Day8().calculatePart1(input)
         print("Day 8 Part 1: \(result)")
         XCTAssertEqual(result, 1501)
 
@@ -56,7 +58,7 @@ class Day8Tests: XCTestCase {
     }
 
     func testDay8Part2() throws {
-        let result = Day8().calculatePart2()
+        let result = Day8().calculatePart2(input)
         XCTAssertEqual(result, 509)
         print("Day 8 Part 2: \(result)")
     }

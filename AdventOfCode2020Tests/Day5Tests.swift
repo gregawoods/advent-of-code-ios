@@ -11,20 +11,22 @@ import XCTest
 class Day5Tests: XCTestCase {
 
     func testSeatId() throws {
-        XCTAssertEqual(Day5.BoardingPass(input: "BFFFBBFRRR").seatId, 567)
-        XCTAssertEqual(Day5.BoardingPass(input: "FFFBBBFRRR").seatId, 119)
-        XCTAssertEqual(Day5.BoardingPass(input: "BBFFBBFRLL").seatId, 820)
+        XCTAssertEqual(Day5.BoardingPass("BFFFBBFRRR").seatId, 567)
+        XCTAssertEqual(Day5.BoardingPass("FFFBBBFRRR").seatId, 119)
+        XCTAssertEqual(Day5.BoardingPass("BBFFBBFRLL").seatId, 820)
     }
 
+    let input = FileReader(file: "day5").lines
+
     func testDay5Part1() throws {
-        let result = Day5().calculatePart1()
-        XCTAssertTrue(result > 0)
+        let result = Day5().calculatePart1(input)
+        XCTAssertEqual(result, 980)
         print("Day 5 Part 1: \(result)")
     }
 
     func testDay5Part2() throws {
-        let result = Day5().calculatePart2()
-        XCTAssertTrue(result > 0)
+        let result = Day5().calculatePart2(input)
+        XCTAssertEqual(result, 607)
         print("Day 5 Part 2: \(result)")
     }
 }

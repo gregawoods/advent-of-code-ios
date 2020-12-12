@@ -15,14 +15,6 @@ struct Day11: DayProtocol {
         case occ = "#"
     }
 
-    init() {
-
-    }
-
-    var input: [String] {
-        return FileReader(file: "day11").lines
-    }
-
     func parseSeats(lines: [String]) -> [[Pos]] {
         let chart = lines.map { line in
             return line.map { Pos(rawValue: String($0))! }
@@ -30,7 +22,7 @@ struct Day11: DayProtocol {
         return chart
     }
 
-    func calculatePart1() -> Int {
+    func calculatePart1(_ input: [String]) -> Int {
         var chart = parseSeats(lines: input)
 
         repeat {
@@ -153,7 +145,7 @@ struct Day11: DayProtocol {
         }
     }
 
-    func calculatePart2() -> Int {
+    func calculatePart2(_ input: [String]) -> Int {
         var chart = parseSeats(lines: input)
 
         repeat {

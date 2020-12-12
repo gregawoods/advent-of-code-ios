@@ -9,17 +9,15 @@ import Foundation
 
 struct Day8: DayProtocol {
 
-    func calculatePart1() -> Int {
-        var game = Game.init(input: FileReader(file: "day8").lines)
+    func calculatePart1(_ input: [String]) -> Int {
+        var game = Game(input)
         game.play()
 
         return game.accumulator
     }
 
-    func calculatePart2() -> Int {
-        let lines = FileReader(file: "day8").lines
-
-        return calculateFixedGame(lines: lines)
+    func calculatePart2(_ input: [String]) -> Int {
+        return calculateFixedGame(lines: input)
     }
 
     func calculateFixedGame(lines: [String]) -> Int {
@@ -32,7 +30,7 @@ struct Day8: DayProtocol {
                 tempInput[n] = tempInput[n].replacingOccurrences(of: "nop", with: "jmp")
             }
 
-            var game = Game(input: tempInput)
+            var game = Game(tempInput)
             game.play()
 
             if game.terminated {
@@ -59,7 +57,7 @@ struct Day8: DayProtocol {
         var position = 0
         var accumulator = 0
 
-        init(input: [String]) {
+        init(_ input: [String]) {
             self.instructions = input.map { line in
                 let action = Action(
                     rawValue: line.components(separatedBy: " ")[0]

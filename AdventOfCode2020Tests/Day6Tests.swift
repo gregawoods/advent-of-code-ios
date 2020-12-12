@@ -11,20 +11,20 @@ import XCTest
 class Day6Tests: XCTestCase {
 
     func testGroupAnswerCount() throws {
-        XCTAssertEqual(Day6.GroupAnswers(input: "abc").count, 3)
+        XCTAssertEqual(Day6.GroupAnswers("abc").count, 3)
 
         let input = """
         a
         b
         c
         """
-        XCTAssertEqual(Day6.GroupAnswers(input: input).count, 3)
+        XCTAssertEqual(Day6.GroupAnswers(input).count, 3)
 
         let input2 = """
         ab
         ac
         """
-        XCTAssertEqual(Day6.GroupAnswers(input: input2).count, 3)
+        XCTAssertEqual(Day6.GroupAnswers(input2).count, 3)
 
         let input3 = """
         a
@@ -32,7 +32,7 @@ class Day6Tests: XCTestCase {
         a
         a
         """
-        XCTAssertEqual(Day6.GroupAnswers(input: input3).count, 1)
+        XCTAssertEqual(Day6.GroupAnswers(input3).count, 1)
     }
 
     func testGroupAnswerCountAll() {
@@ -40,17 +40,19 @@ class Day6Tests: XCTestCase {
         ab
         ac
         """
-        XCTAssertEqual(Day6.GroupAnswers(input: input).countAll, 1)
+        XCTAssertEqual(Day6.GroupAnswers(input).countAll, 1)
     }
 
+    let input = FileReader(file: "day6").chunksByNewline
+
     func testDay6Part1() throws {
-        let result = Day6().calculatePart1()
+        let result = Day6().calculatePart1(input)
         XCTAssertEqual(result, 6782)
         print("Day 6 Part 1: \(result)")
     }
 
     func testDay6Part2() throws {
-        let result = Day6().calculatePart2()
+        let result = Day6().calculatePart2(input)
         XCTAssertEqual(result, 3596)
         print("Day 6 Part 2: \(result)")
     }

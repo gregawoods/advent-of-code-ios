@@ -9,17 +9,15 @@ import Foundation
 
 struct Day10: DayProtocol {
 
-    let numbers: [Int]
-
-    init() {
-        var input = FileReader(file: "day10").arrayOfInts.sorted()
-        input.insert(0, at: 0)
-        input.append(input.last! + 3)
-        self.numbers = input
+    func prepare(_ input: [Int]) -> [Int] {
+        var numbers = input.sorted()
+        numbers.insert(0, at: 0)
+        numbers.append(numbers.last! + 3)
+        return numbers
     }
 
-    func calculatePart1() -> Int {
-        let diffs = countDiffs(numbers: numbers)
+    func calculatePart1(_ input: [Int]) -> Int {
+        let diffs = countDiffs(numbers: prepare(input))
 
         return diffs[0] * diffs[2]
     }
@@ -48,9 +46,9 @@ struct Day10: DayProtocol {
     }
 
     typealias Graph = [Int: [Int]]
-    var maxValue: Int { return numbers.last! }
 
-    func calculatePart2() -> Int {
+    func calculatePart2(_ input: [Int]) -> Int {
+        let numbers = prepare(input)
         var graph = Graph()
 
         for n in numbers {
@@ -66,6 +64,8 @@ struct Day10: DayProtocol {
     func count(_ graph: Graph, _ cache: inout Cache<Int, Int>, _ index: Int) -> Int {
         return cache.fetch(key: index) {
             guard let sequence = graph[index] else { return 0 }
+
+            let maxValue = graph.keys.max()
 
             if sequence[0] == maxValue {
                 return 1

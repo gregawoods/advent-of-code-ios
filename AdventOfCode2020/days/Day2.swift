@@ -9,18 +9,12 @@ import Foundation
 
 struct Day2: DayProtocol {
 
-    let passwords: [Password]
-
-    init() {
-        self.passwords = FileReader(file: "day2").lines.map({ Password($0) })
+    func calculatePart1(_ input: [String]) -> Int {
+        return input.map({ Password($0) }).countWhere { $0.valid }
     }
 
-    func calculatePart1() -> Int {
-        return passwords.countWhere { $0.valid }
-    }
-
-    func calculatePart2() -> Int {
-        return passwords.countWhere { $0.validPart2 }
+    func calculatePart2(_ input: [String]) -> Int {
+        return input.map({ Password($0) }).countWhere { $0.validPart2 }
     }
 
     struct Password {

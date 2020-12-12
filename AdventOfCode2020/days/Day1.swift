@@ -9,27 +9,21 @@ import Foundation
 
 struct Day1: DayProtocol {
 
-    let lines: [Int]
-
-    init() {
-        self.lines = FileReader(file: "day1").arrayOfInts
-    }
-
-    func calculatePart1() -> Int {
-        for x in lines {
+    func calculatePart1(_ input: [Int]) -> Int {
+        for x in input {
             let y = 2020 - x
-            if lines.contains(y) {
+            if input.contains(y) {
                 return x * y
             }
         }
         return -1
     }
 
-    func calculatePart2() -> Int {
-        for x in lines {
-            for y in lines {
+    func calculatePart2(_ input: [Int]) -> Int {
+        for x in input {
+            for y in input {
                 let z = 2020 - x - y
-                if lines.contains(z) {
+                if input.contains(z) {
                     return x * y * z
                 }
             }

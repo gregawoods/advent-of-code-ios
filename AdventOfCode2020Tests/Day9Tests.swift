@@ -11,6 +11,7 @@ import XCTest
 class Day9Tests: XCTestCase {
 
     let day = Day9()
+    let input = FileReader(file: "day9").arrayOfInts
 
     let sample = [
         35,
@@ -41,13 +42,13 @@ class Day9Tests: XCTestCase {
     }
 
     func testDay9Part1() throws {
-        let result = day.calculatePart1()
+        let result = day.calculatePart1(input)
         print("Day 9 Part 1: \(result)")
         XCTAssertEqual(result, 177777905)
     }
 
     func testDay9Part2() throws {
-        let result = day.calculatePart2()
+        let result = day.calculatePart2(input)
         print("Day 9 Part 2: \(result)")
         XCTAssertEqual(result, 23463012)
     }

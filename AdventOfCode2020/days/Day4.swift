@@ -9,20 +9,16 @@ import Foundation
 
 struct Day4: DayProtocol {
 
-    let passports: [Passport]
-
-    init() {
-        self.passports = FileReader(file: "day4").chunksByNewline.map { input in
-            Passport(input: input)
-        }
+    private func passports(_ input: [String]) -> [Passport] {
+        return input.map { Passport(input: $0) }
     }
 
-    func calculatePart1() -> Int {
-        return passports.countWhere { $0.hasRequiredFields }
+    func calculatePart1(_ input: [String]) -> Int {
+        return passports(input).countWhere { $0.hasRequiredFields }
     }
 
-    func calculatePart2() -> Int {
-        return passports.countWhere { $0.hasValidData }
+    func calculatePart2(_ input: [String]) -> Int {
+        return passports(input).countWhere { $0.hasValidData }
     }
 
     typealias Validator = (String) -> Bool
