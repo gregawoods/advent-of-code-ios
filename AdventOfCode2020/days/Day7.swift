@@ -17,7 +17,7 @@ struct Day7: DayProtocol {
         var count = 0
 
         let bags = input.map { BagDef($0) }
-        
+
         bags.forEach { (bag) in
             if searchChildren(haystack: bag.holdColors, needle: "shiny gold", allBags: bags) {
                 count += 1
