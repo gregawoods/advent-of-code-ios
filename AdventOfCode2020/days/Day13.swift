@@ -34,41 +34,35 @@ struct Day13: DayProtocol {
 
     struct Bus {
         let interval: Int
-        let index: Int
+        let offset: Int
     }
 
     func calculatePart2(_ input: [String]) -> Int {
-
         var busses: [Bus] = []
 
         for (index, busId) in input[1].components(separatedBy: ",").enumerated() {
             if busId == "x" { continue }
 
-            busses.append(Bus(interval: Int(busId)!, index: index))
+            busses.append(Bus(interval: Int(busId)!, offset: index))
         }
 
         busses = busses.sorted(by: { (a, b) -> Bool in
             a.interval > b.interval
         })
 
-        for index in 1... {
-            let time = index * busses[0].interval
+        var offset = 0 - busses[0].offset
+        var interval = busses[0].interval
 
-            if checkMinute(busses: busses, minute: time) {
-                return time - busses[0].index
-            }
-        }
-
-        return 0
-    }
-
-    func checkMinute(busses: [Bus], minute: Int) -> Bool {
         for bus in busses[1...(busses.count-1)] {
-            let newTime = minute + (bus.index - busses[0].index)
-            if newTime % bus.interval != 0 {
-                return false
+            while true {
+                offset += interval
+                if (offset + bus.offset) % bus.interval == 0 {
+                    interval *= bus.interval
+                    break
+                }
             }
         }
-        return true
+
+        return offset
     }
 }

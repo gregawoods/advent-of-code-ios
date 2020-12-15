@@ -37,7 +37,6 @@ class Day13Tests: XCTestCase {
     func testPart2() throws {
         let result = day.calculatePart2(input)
         print("Day 13 Part 2: \(result)")
-        XCTAssertEqual(result, 0)
+        XCTAssertEqual(result, 702970661767766)
     }
 }
-
