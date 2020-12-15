@@ -43,6 +43,8 @@
 		C389014425840D5500ED952C /* day11.txt in Resources */ = {isa = PBXBuildFile; fileRef = C389014325840D5500ED952C /* day11.txt */; };
 		C389014825840D6100ED952C /* Day11Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C389014725840D6100ED952C /* Day11Tests.swift */; };
 		C389BE8F258840D200C5975E /* Day14.swift in Sources */ = {isa = PBXBuildFile; fileRef = C389BE8E258840D200C5975E /* Day14.swift */; };
+		C389BE932588410400C5975E /* day14.txt in Resources */ = {isa = PBXBuildFile; fileRef = C389BE922588410400C5975E /* day14.txt */; };
+		C389BE972588411300C5975E /* Day14Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C389BE962588411300C5975E /* Day14Tests.swift */; };
 		C39EE04A257F405F00A0BD73 /* Day8.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39EE049257F405F00A0BD73 /* Day8.swift */; };
 		C39EE04E257F406C00A0BD73 /* day8.txt in Resources */ = {isa = PBXBuildFile; fileRef = C39EE04D257F406C00A0BD73 /* day8.txt */; };
 		C39EE052257F407E00A0BD73 /* Day8Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39EE051257F407E00A0BD73 /* Day8Tests.swift */; };
@@ -110,6 +112,8 @@
 		C389014325840D5500ED952C /* day11.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day11.txt; sourceTree = "<group>"; };
 		C389014725840D6100ED952C /* Day11Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day11Tests.swift; sourceTree = "<group>"; };
 		C389BE8E258840D200C5975E /* Day14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day14.swift; sourceTree = "<group>"; };
+		C389BE922588410400C5975E /* day14.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day14.txt; sourceTree = "<group>"; };
+		C389BE962588411300C5975E /* Day14Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day14Tests.swift; sourceTree = "<group>"; };
 		C39EE049257F405F00A0BD73 /* Day8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day8.swift; sourceTree = "<group>"; };
 		C39EE04D257F406C00A0BD73 /* day8.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day8.txt; sourceTree = "<group>"; };
 		C39EE051257F407E00A0BD73 /* Day8Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day8Tests.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 				C389014725840D6100ED952C /* Day11Tests.swift */,
 				C342D0B8258482BF00F56D39 /* Day12Tests.swift */,
 				C342D0DE2585D54200F56D39 /* Day13Tests.swift */,
+				C389BE962588411300C5975E /* Day14Tests.swift */,
 			);
 			path = AdventOfCode2020Tests;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 				C389014325840D5500ED952C /* day11.txt */,
 				C342D0B4258482A800F56D39 /* day12.txt */,
 				C342D0DA2585D51A00F56D39 /* day13.txt */,
+				C389BE922588410400C5975E /* day14.txt */,
 			);
 			path = input;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 				C36649152579325D008F719C /* day3.txt in Resources */,
 				C342D0D12585710400F56D39 /* day2.txt in Resources */,
 				C342D0CA258570F400F56D39 /* day1.txt in Resources */,
+				C389BE932588410400C5975E /* day14.txt in Resources */,
 				C37786F1257DED1E00F1487C /* day7.txt in Resources */,
 				C311FBE725808E5200AE247F /* day9.txt in Resources */,
 				C342D0DB2585D51A00F56D39 /* day13.txt in Resources */,
@@ -385,7 +392,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -427,6 +434,7 @@
 				C3BBE88D257C9A07006182AB /* Day2Tests.swift in Sources */,
 				C37786F5257DED3000F1487C /* Day7Tests.swift in Sources */,
 				C342D0DF2585D54200F56D39 /* Day13Tests.swift in Sources */,
+				C389BE972588411300C5975E /* Day14Tests.swift in Sources */,
 				C39EE052257F407E00A0BD73 /* Day8Tests.swift in Sources */,
 				C311FBEB25808E6100AE247F /* Day9Tests.swift in Sources */,
 				C389014825840D6100ED952C /* Day11Tests.swift in Sources */,
