@@ -8,25 +8,39 @@
 import Foundation
 
 struct Day15: DayProtocol {
-    func calculatePart1(_ input: [Int]) -> Int {
 
-        var numbers = input
+    func findLastNumber(_ input: [Int], limit: Int) -> Int {
+        var previousNumberDelta: Int?
 
-        repeat {
-            let lastNum = numbers.last!
+        // key: The number
+        // val: The last time this number was used
+        var numbers: [Int: Int] = [:]
 
-            if numbers.countWhere({ $0 == lastNum }) > 1 {
-                let indices = numbers.allIndicesOf(element: lastNum)
-                numbers.append(indices.last! - indices[indices.count - 2])
+        // seed the initial values
+        for (index, item) in input.enumerated() {
+            numbers[item] = index
+        }
+
+        var value = -1
+
+        for index in input.count...(limit - 1) {
+            value = previousNumberDelta ?? 0
+            if let turn = numbers[value] {
+                previousNumberDelta = index - turn
             } else {
-                numbers.append(0)
+                previousNumberDelta = nil
             }
-        } while numbers.count < 2020
+            numbers[value] = index
+        }
 
-        return numbers.last!
+        return value
+    }
+
+    func calculatePart1(_ input: [Int]) -> Int {
+        return findLastNumber(input, limit: 2020)
     }
 
     func calculatePart2(_ input: [Int]) -> Int {
-        return 0
+        return findLastNumber(input, limit: 30000000)
     }
 }
