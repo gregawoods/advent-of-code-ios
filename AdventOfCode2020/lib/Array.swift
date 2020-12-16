@@ -18,3 +18,17 @@ extension Array where Element: Numeric {
         return reduce(0) { $0 + $1 }
     }
 }
+
+extension Array where Element: Equatable {
+    func allIndicesOf(element: Element) -> [Int] {
+        var indices: [Int] = []
+        var index = 0
+        forEach { e in
+            if element == e {
+                indices.append(index)
+            }
+            index += 1
+        }
+        return indices
+    }
+}
