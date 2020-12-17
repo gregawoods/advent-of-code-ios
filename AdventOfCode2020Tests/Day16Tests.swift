@@ -12,24 +12,6 @@ import XCTest
 class Day16Tests: XCTestCase {
 
     let day = Day16()
-    let sampleText = """
-    class: 1-3 or 5-7
-    row: 6-11 or 33-44
-    seat: 13-40 or 45-50
-
-    your ticket:
-    7,1,14
-
-    nearby tickets:
-    7,3,47
-    40,4,50
-    55,2,20
-    38,6,12
-    """
-
-    lazy var sample: [String] = {
-        return FileReader(raw: sampleText).chunksByNewline
-    }()
 
     let input = FileReader(file: "day16").chunksByNewline
 
@@ -47,6 +29,21 @@ class Day16Tests: XCTestCase {
     }
 
     func testPart1Sample() {
+        let sampleText = """
+        class: 1-3 or 5-7
+        row: 6-11 or 33-44
+        seat: 13-40 or 45-50
+
+        your ticket:
+        7,1,14
+
+        nearby tickets:
+        7,3,47
+        40,4,50
+        55,2,20
+        38,6,12
+        """
+        let sample = FileReader(raw: sampleText).chunksByNewline
         let result = day.calculatePart1(sample)
         XCTAssertEqual(result, 71)
     }
@@ -54,17 +51,25 @@ class Day16Tests: XCTestCase {
     func testPart1() throws {
         let result = day.calculatePart1(input)
         print("Day 16 Part 1: \(result)")
-        XCTAssertEqual(result, 0)
+        XCTAssertEqual(result, 20975)
     }
 
     func testPart2Sample() {
-        let result = day.calculatePart2(sample)
-        XCTAssertEqual(result, 0)
+        let result = day.determinePositions(rules: [
+            Day16.Rule("class: 0-1 or 4-19"),
+            Day16.Rule("row: 0-5 or 8-19"),
+            Day16.Rule("seat: 0-13 or 16-19")
+        ], tickets: [
+            [3, 9, 18],
+            [15, 1, 5],
+            [5, 14, 9]
+        ])
+        XCTAssertEqual(result, ["row", "class", "seat"])
     }
 
     func testPart2() throws {
         let result = day.calculatePart2(input)
         print("Day 16 Part 2: \(result)")
-        XCTAssertEqual(result, 0)
+        XCTAssertEqual(result, 910339449193)
     }
 }
