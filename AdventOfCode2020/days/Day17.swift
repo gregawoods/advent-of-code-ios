@@ -71,9 +71,7 @@ struct Day17: DayProtocol {
         }
 
         mutating func setActiveAt(_ x: Int, _ y: Int, _ z: Int, _ w: Int = 0, active: Bool) {
-            points.remove(Point(x, y, z, w))
-
-            points.insert(Point(x, y, z, w, active))
+            points.update(with: Point(x, y, z, w, active))
         }
 
         func activeNeighbors(_ x: Int, _ y: Int, _ z: Int, _ w: Int = 0) -> Int {
