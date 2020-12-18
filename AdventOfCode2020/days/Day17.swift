@@ -47,13 +47,9 @@ struct Day17: DayProtocol {
     }
 
     struct Grid {
-        let width: Int
-        let height: Int
         var points: Set<Point>
 
         init(input: [String]) {
-            self.width = input.count
-            self.height = input.first!.count
             self.points = []
 
             var y = 0
