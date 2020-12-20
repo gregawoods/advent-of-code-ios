@@ -104,7 +104,7 @@ struct Day17: DayProtocol {
         var minZ: Int { points.map { $0.z }.min()! }
         var maxZ: Int { points.map { $0.z }.max()! }
         var minW: Int { points.map { $0.w }.min()! }
-        var maxW: Int { points.map { $0.z }.max()! }
+        var maxW: Int { points.map { $0.w }.max()! }
     }
 
     func calculatePart1(_ input: [String]) -> Int {
