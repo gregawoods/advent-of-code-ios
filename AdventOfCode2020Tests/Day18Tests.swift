@@ -39,13 +39,31 @@ class Day18Tests: XCTestCase {
     }
 
     func testPart2Sample() {
-        let result = day.calculatePart2(sample)
-        XCTAssertEqual(result, 0)
+        var result = day.parseEquation("2 * 3 + 4")
+        XCTAssertEqual(result.sumV2, 14)
+
+        result = day.parseEquation("1 + (2 * 2 + (1 + 2))")
+        XCTAssertEqual(result.sumV2, 11)
+
+        result = day.parseEquation("1 + (2 * 3) + (4 * (5 + 6))")
+        XCTAssertEqual(result.sumV2, 51)
+
+        result = day.parseEquation("2 * 3 + (4 * 5)")
+        XCTAssertEqual(result.sumV2, 46)
+
+        result = day.parseEquation("5 + (8 * 3 + 9 + 3 * 4 * 3)")
+        XCTAssertEqual(result.sumV2, 1445)
+
+        result = day.parseEquation("5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))")
+        XCTAssertEqual(result.sumV2, 669060)
+
+        result = day.parseEquation("((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2")
+        XCTAssertEqual(result.sumV2, 23340)
     }
 
     func testPart2() throws {
         let result = day.calculatePart2(input)
         print("Day 18 Part 2: \(result)")
-        XCTAssertEqual(result, 0)
+        XCTAssertEqual(result, 55699621957369)
     }
 }
