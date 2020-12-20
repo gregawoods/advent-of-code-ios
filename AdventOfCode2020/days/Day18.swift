@@ -7,27 +7,7 @@
 
 import Foundation
 
-//protocol Day18Computable {
-//    var operand: Day18.Operand { get }
-//    var value: Int { get }
-//}
-
 struct Day18: DayProtocol {
-
-//    typealias Computable = Day18Computable
-//    struct Component: Computable {
-//        let operand: Operand
-//        let value: Int
-//    }
-//
-//    struct NestedComponent: Computable {
-//        let operand: Operand
-//        var components: [Component] = []
-//
-//        var value: Int {
-//            return 0 // add up sub components
-//        }
-//    }
 
     enum Operand: Character {
         case add = "+"
