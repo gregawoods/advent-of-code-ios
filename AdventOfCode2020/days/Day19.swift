@@ -12,7 +12,7 @@ struct Day19: DayProtocol {
     struct Rule {
         let id: Int
         let subRules: [[Int]]
-        let char: String?
+        let char: Character?
 
         init(_ input: String) {
             let parts = input.components(separatedBy: ": ")
@@ -20,7 +20,7 @@ struct Day19: DayProtocol {
 
             if parts[1].firstIndex(of: "\"") != nil {
                 self.subRules = []
-                self.char = parts[1].replacingOccurrences(of: "\"", with: "")
+                self.char = parts[1].replacingOccurrences(of: "\"", with: "").first
             } else {
                 self.subRules = parts[1].components(separatedBy: " | ").map({ ruleString in
                     return ruleString.components(separatedBy: " ").map({ Int(String($0))! })
@@ -28,16 +28,28 @@ struct Day19: DayProtocol {
                 self.char = nil
             }
         }
+
+        var condition1: [Int]? { subRules.first }
+        var condition2: [Int]? {
+            if subRules.count > 1 {
+                return subRules[1]
+            }
+            return nil
+        }
     }
 
     struct RuleStore {
-        let rules: [Rule]
+        let rules: [Int: Rule]
         var cache: Cache<Int, Set<String>> = Cache()
 
+        init(rules: [Rule]) {
+            var dict: [Int: Rule] = [:]
+            rules.forEach { dict[$0.id] = $0 }
+            self.rules = dict
+        }
+
         func findRule(_ id: Int) -> Rule? {
-            return rules.first(where: { rule in
-                return rule.id == id
-            })
+            return rules[id]
         }
 
         func stringsForRule(ruleId: Int) -> Set<String> {
@@ -47,7 +59,7 @@ struct Day19: DayProtocol {
                 }
 
                 if let char = rule.char {
-                    return [char]
+                    return [String(char)]
                 }
 
                 var results: [String] = []
@@ -71,29 +83,80 @@ struct Day19: DayProtocol {
             }
         }
 
-        func match(input: String, ruleId: Int) -> Bool {
-            let strings = stringsForRule(ruleId: ruleId)
+        var maxDepth = 10
 
-            return strings.contains(input)
+        func searchProgressively(ruleId: Int, message: String, depth: Int = 0) -> Set<String> {
+            if depth >= maxDepth {
+                return ["💣"]
+            }
+
+            guard let rule = findRule(ruleId) else {
+                return []
+            }
+
+            if let char = rule.char {
+                if message.contains(char) {
+                    return [String(char)]
+                } else {
+                    return []
+                }
+            }
+
+            var results: Set<String> = []
+            for subRule in rule.subRules {
+                var set = subRule.map { searchProgressively(ruleId: $0, message: message, depth: depth + 1) }
+                set = set.filter { $0.count > 0 }
+                if set.count == 0 { continue }
+
+                var matches = set.first!
+                for position in set.dropFirst() {
+                    var newSet: Set<String> = []
+                    for match in matches {
+                        for pos in position {
+                            let str = match + pos
+                            newSet.insert(str)
+                        }
+                    }
+                    matches = newSet
+                }
+                results = results.union(matches)
+            }
+
+            return results.filter { message.contains($0) }
+        }
+
+        func checkMessage(message: String) -> Bool {
+            let results = searchProgressively(ruleId: 0, message: message)
+
+            return results.contains(message)
         }
     }
 
     func calculatePart1(_ input: [String]) -> Int {
+        let lines = input[1].components(separatedBy: "\n")
         let rules = input[0].components(separatedBy: "\n").map { Rule($0) }
         let store = RuleStore(rules: rules)
+        let strings = store.stringsForRule(ruleId: 0)
 
-        var count = 0
-
-        for line in input[1].components(separatedBy: "\n") {
-            if store.match(input: line, ruleId: 0) {
-                count += 1
-            }
-        }
-
-        return count
+        return lines.countWhere { strings.contains($0) }
     }
 
     func calculatePart2(_ input: [String]) -> Int {
-        return 0
+        let lines = input[1].components(separatedBy: "\n")
+        let rules = input[0].components(separatedBy: "\n").map { Rule($0) }
+        var store = RuleStore(rules: rules)
+
+        store.maxDepth = lines.map { $0.count }.max()!
+
+        let count = lines.count
+        var index = 0
+
+        let matching = lines.filter {
+            print("\(index)/\(count)")
+            index += 1
+            return store.checkMessage(message: $0)
+        }
+
+        return matching.count
     }
 }
