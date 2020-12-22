@@ -5,8 +5,6 @@
 //  Created by Greg Woods on 12/18/20.
 //
 
-// swiftlint:disable line_length
-
 import XCTest
 
 @testable import AdventOfCode2020
@@ -88,6 +86,8 @@ class Day19Tests: XCTestCase {
         print("Day 19 Part 1: \(result)")
         XCTAssertEqual(result, 151)
     }
+
+    // swiftlint:disable function_body_length
 
     func testPart2Sample() {
         var rules = """

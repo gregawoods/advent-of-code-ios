@@ -57,9 +57,7 @@ struct Day12: DayProtocol {
         func rotate(degrees: Int, direction: String, aroundX: Int, aroundY: Int) {
             let multiplier = direction == "R" ? -1 : 1
 
-            point.rotate(
-                degrees: degrees * multiplier,
-                around: Point(aroundX, aroundY))
+            point.rotate(degrees: degrees * multiplier, aroundX: Double(aroundX), aroundY: Double(aroundY))
         }
 
         var manhatten: Int {

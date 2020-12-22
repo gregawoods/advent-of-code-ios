@@ -40,11 +40,7 @@ struct Day21: DayProtocol {
         })
     }
 
-    func calculatePart2(_ input: [String]) -> Int {
-        return 0
-    }
-
-    func calculatePart2Str(_ input: [String]) -> String {
+    func calculatePart2(_ input: [String]) -> String {
         var dict: AllergenDict = [:]
 
         for line in input {

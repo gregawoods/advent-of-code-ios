@@ -75,6 +75,9 @@
 		C3F7C81B2591598E00E693B4 /* Day21.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F7C81A2591598E00E693B4 /* Day21.swift */; };
 		C3F7C81F259159B500E693B4 /* day21.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3F7C81E259159B500E693B4 /* day21.txt */; };
 		C3F7C823259159C100E693B4 /* Day21Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F7C822259159C100E693B4 /* Day21Tests.swift */; };
+		C3F7C8272591837000E693B4 /* Day20.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F7C8262591837000E693B4 /* Day20.swift */; };
+		C3F7C82D2591842000E693B4 /* day20.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3F7C82C2591842000E693B4 /* day20.txt */; };
+		C3F7C8332591844C00E693B4 /* Day20Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F7C8322591844C00E693B4 /* Day20Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +164,9 @@
 		C3F7C81A2591598E00E693B4 /* Day21.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day21.swift; sourceTree = "<group>"; };
 		C3F7C81E259159B500E693B4 /* day21.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day21.txt; sourceTree = "<group>"; };
 		C3F7C822259159C100E693B4 /* Day21Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day21Tests.swift; sourceTree = "<group>"; };
+		C3F7C8262591837000E693B4 /* Day20.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day20.swift; sourceTree = "<group>"; };
+		C3F7C82C2591842000E693B4 /* day20.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day20.txt; sourceTree = "<group>"; };
+		C3F7C8322591844C00E693B4 /* Day20Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day20Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +253,7 @@
 				C36BF158258D525A0093BC94 /* Day18Tests.swift */,
 				C36BF164258DC0040093BC94 /* Day19Tests.swift */,
 				C3F7C822259159C100E693B4 /* Day21Tests.swift */,
+				C3F7C8322591844C00E693B4 /* Day20Tests.swift */,
 			);
 			path = AdventOfCode2020Tests;
 			sourceTree = "<group>";
@@ -284,6 +291,7 @@
 				C3269BA2258AE29B00C4F805 /* day16.txt */,
 				C36BF15C258D68EE0093BC94 /* day18.txt */,
 				C36BF168258DC0260093BC94 /* day19.txt */,
+				C3F7C82C2591842000E693B4 /* day20.txt */,
 				C3F7C81E259159B500E693B4 /* day21.txt */,
 			);
 			path = input;
@@ -311,6 +319,7 @@
 				C37C4EEE258C376500E49F6D /* Day17.swift */,
 				C36BF154258D52270093BC94 /* Day18.swift */,
 				C36BF160258DBFCB0093BC94 /* Day19.swift */,
+				C3F7C8262591837000E693B4 /* Day20.swift */,
 				C3F7C81A2591598E00E693B4 /* Day21.swift */,
 			);
 			path = days;
@@ -404,6 +413,7 @@
 				C3269BA3258AE29B00C4F805 /* day16.txt in Resources */,
 				C39EE04E257F406C00A0BD73 /* day8.txt in Resources */,
 				C36648B125787145008F719C /* Assets.xcassets in Resources */,
+				C3F7C82D2591842000E693B4 /* day20.txt in Resources */,
 				C36BF169258DC0260093BC94 /* day19.txt in Resources */,
 				C366491B257A78F8008F719C /* day4.txt in Resources */,
 				C36649152579325D008F719C /* day3.txt in Resources */,
@@ -472,6 +482,7 @@
 				C36BF161258DBFCB0093BC94 /* Day19.swift in Sources */,
 				C3546B6625899130007EA26E /* Day15.swift in Sources */,
 				C389014025840D4600ED952C /* Day11.swift in Sources */,
+				C3F7C8272591837000E693B4 /* Day20.swift in Sources */,
 				C36BF155258D52270093BC94 /* Day18.swift in Sources */,
 				C3BBE881257B4B11006182AB /* Day5.swift in Sources */,
 				C389BE8F258840D200C5975E /* Day14.swift in Sources */,
@@ -493,6 +504,7 @@
 			files = (
 				C3546B6A25899182007EA26E /* Day15Tests.swift in Sources */,
 				C36BF159258D525A0093BC94 /* Day18Tests.swift in Sources */,
+				C3F7C8332591844C00E693B4 /* Day20Tests.swift in Sources */,
 				C3BBE8A1257C9B12006182AB /* Day6Tests.swift in Sources */,
 				C37027352581E0E900508778 /* Day10Tests.swift in Sources */,
 				C3269BA7258AE3A200C4F805 /* Day16Tests.swift in Sources */,

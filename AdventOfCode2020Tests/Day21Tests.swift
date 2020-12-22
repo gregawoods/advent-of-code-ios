@@ -32,12 +32,12 @@ class Day21Tests: XCTestCase {
     }
 
     func testPart2Sample() {
-        let result = day.calculatePart2Str(sample)
+        let result = day.calculatePart2(sample)
         XCTAssertEqual(result, "mxmxvkd,sqjhc,fvjkl")
     }
 
     func testPart2() throws {
-        let result = day.calculatePart2Str(input)
+        let result = day.calculatePart2(input)
         print("Day 21 Part 2: \(result)")
         XCTAssertEqual(result, "ntft,nhx,kfxr,xmhsbd,rrjb,xzhxj,chbtp,cqvc")
     }

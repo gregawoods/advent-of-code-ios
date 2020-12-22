@@ -9,6 +9,9 @@ import Foundation
 
 protocol DayProtocol {
     associatedtype InputType = [String]
-    func calculatePart1(_ input: InputType) -> Int
-    func calculatePart2(_ input: InputType) -> Int
+    associatedtype ReturnPart1 = Int
+    associatedtype ReturnPart2 = Int
+
+    func calculatePart1(_ input: InputType) -> ReturnPart1
+    func calculatePart2(_ input: InputType) -> ReturnPart2
 }
