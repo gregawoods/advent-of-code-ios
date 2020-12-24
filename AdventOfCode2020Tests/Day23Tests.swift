@@ -21,7 +21,7 @@ class Day23Tests: XCTestCase {
     }
 
     func testPart1Sample() {
-        let result = day.calculatePart1(sample)
+        let result = day.calculatePart1LinkedList(sample)
 
         XCTAssertEqual(result, 67384529)
     }
@@ -32,17 +32,15 @@ class Day23Tests: XCTestCase {
         XCTAssertEqual(result, 69852437)
     }
 
-    // not 98524376
-
     func testPart2Sample() {
         let result = day.calculatePart2(sample)
-        XCTAssertEqual(result, 1)
+        XCTAssertEqual(result, 149245887792)
     }
 
     func testPart2() throws {
         let result = day.calculatePart2(input)
         print("Day 23 Part 2: \(result)")
-        XCTAssertEqual(result, 1)
+        XCTAssertEqual(result, 91408386135)
     }
 }
-// 131
+

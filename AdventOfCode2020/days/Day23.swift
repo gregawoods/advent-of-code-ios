@@ -7,8 +7,97 @@
 
 import Foundation
 
+class Cup {
+    let value: Int
+    var next: Cup? {
+        didSet {
+            if let newNext = next {
+                newNext.prev = self
+            }
+        }
+    }
+    var prev: Cup?
+
+    init(value: Int) {
+        self.value = value
+    }
+}
+
 struct Day23: DayProtocol {
-    
+
+    func calculatePart1LinkedList(_ input: [Int]) -> Int {
+        var allCups: [Int: Cup] = [:]
+
+        var firstCup: Cup?
+        var lastCup: Cup?
+
+        for n in 0...input.count-1 {
+            let newCup = Cup(value: input[n])
+            allCups[newCup.value] = newCup
+
+            if firstCup == nil {
+                firstCup = newCup
+            } else if lastCup != nil {
+                lastCup!.next = newCup
+            }
+            lastCup = newCup
+        }
+
+        lastCup?.next = firstCup
+
+        var startingCup = input.first!
+        var iteration = 0
+        repeat {
+            startingCup = moveCupsLL(cups: allCups, startingCup: startingCup)
+            iteration += 1
+        } while iteration < 100
+
+        return printAnswer(allCups: allCups)
+    }
+
+    func moveCupsLL(cups: [Int: Cup], startingCup: Int) -> Int {
+        guard let currentCup = cups[startingCup] else {
+            return 0
+        }
+
+        var toMove: [Cup] = []
+        toMove.append(currentCup.next!)
+        toMove.append(currentCup.next!.next!)
+        toMove.append(currentCup.next!.next!.next!)
+
+        let nextStartingCup = toMove.last!.next!
+
+        var target = currentCup.value - 1
+
+        while target == 0 || toMove.map({ $0.value }).contains(target) {
+            if target == 0 {
+                target = cups.keys.max()!
+//                target = 1000000
+            } else {
+                target -= 1
+            }
+        }
+
+        currentCup.next = toMove.last!.next!
+        toMove.last!.next = cups[target]!.next
+        cups[target]!.next = toMove.first!
+
+        return nextStartingCup.value
+    }
+
+    func printAnswer(allCups: [Int: Cup]) -> Int {
+        var cup = allCups[1]!
+        var answer: [Int] = []
+
+        repeat {
+            cup = cup.next!
+            if cup.value == 1 { break }
+            answer.append(cup.value)
+        } while true
+
+        return Int(answer.map({ String($0) }).joined())!
+    }
+
     func calculatePart1(_ input: [Int]) -> Int {
         var cups = input
         var iteration = 0
@@ -79,20 +168,44 @@ struct Day23: DayProtocol {
     }
 
     func calculatePart2(_ input: [Int]) -> Int {
-        var cups = input
-        let max = cups.max()!
+        var allCups: [Int: Cup] = [:]
 
-        for n in 0...(1000000-input.count-1) {
-            cups.append(n + max)
+        var firstCup: Cup?
+        var lastCup: Cup?
+
+        for n in 0...input.count-1 {
+            let newCup = Cup(value: input[n])
+            allCups[newCup.value] = newCup
+
+            if firstCup == nil {
+                firstCup = newCup
+            } else if lastCup != nil {
+                lastCup!.next = newCup
+            }
+            lastCup = newCup
         }
 
-        var iteration = 0
+        let max = input.max()!
 
+        for n in 0...(1000000-input.count-1) {
+            let newCup = Cup(value: n + max + 1)
+            allCups[newCup.value] = newCup
+            lastCup!.next = newCup
+            lastCup = newCup
+        }
+
+        lastCup?.next = firstCup
+
+        var startingCup = input.first!
+        var iteration = 0
         repeat {
-            cups = moveCups(cups: cups)
+            startingCup = moveCupsLL(cups: allCups, startingCup: startingCup)
             iteration += 1
         } while iteration < 10000000
 
-        return 1
+        let cup1 = allCups[1]!.next!
+        let cup2 = cup1.next!
+
+        return cup1.value * cup2.value
     }
 }
