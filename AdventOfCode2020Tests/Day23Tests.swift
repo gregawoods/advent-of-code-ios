@@ -15,14 +15,8 @@ class Day23Tests: XCTestCase {
     let sample = [3, 8, 9, 1, 2, 5, 4, 6, 7]
     let input = [9, 2, 5, 1, 7, 6, 8, 3, 4]
 
-    func testMoveCups() {
-        let result = day.moveCups(cups: sample)
-        XCTAssertEqual(result, [2, 8, 9, 1, 5, 4, 6, 7, 3])
-    }
-
     func testPart1Sample() {
-        let result = day.calculatePart1LinkedList(sample)
-
+        let result = day.calculatePart1(sample)
         XCTAssertEqual(result, 67384529)
     }
 
@@ -43,4 +37,3 @@ class Day23Tests: XCTestCase {
         XCTAssertEqual(result, 91408386135)
     }
 }
-
