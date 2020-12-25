@@ -18,25 +18,11 @@ struct Day24: DayProtocol {
         case ne
     }
 
-    class Tile: Equatable, Hashable {
+    struct Tile {
         var black = true
-        var white: Bool { !black }
-        var x: Double
-        var y: Double
 
-        init(_ x: Double = 0, _ y: Double = 0) {
-            self.x = x
-            self.y = y
-        }
-
-        static func == (lhs: Tile, rhs: Tile) -> Bool {
-            return lhs.x == rhs.x &&
-                lhs.y == rhs.y
-        }
-
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(x)
-            hasher.combine(y)
+        mutating func flip() {
+            self.black = !self.black
         }
     }
 
@@ -69,9 +55,11 @@ struct Day24: DayProtocol {
         return moves
     }
 
-    func calculatePart1(_ input: [String]) -> Int {
+    typealias TileDict = [[Double]: Tile]
+
+    func runInitialMoves(_ input: [String]) -> TileDict {
         let lines = input.map { parseInstruction(input: $0) }
-        var tiles: Set<Tile> = []
+        var tiles: TileDict = [:]
 
         for line in lines {
             var x: Double = 0
@@ -98,17 +86,78 @@ struct Day24: DayProtocol {
                 }
             }
 
-            if let tileIndex = tiles.firstIndex(of: Tile(x, y)) {
-                tiles[tileIndex].black = !tiles[tileIndex].black
+            if var tile = tiles[[x, y]] {
+                tile.flip()
+                tiles[[x, y]] = tile
             } else {
-                tiles.insert(Tile(x, y))
+                tiles[[x, y]] = Tile()
             }
         }
 
-        return tiles.filter { $0.black }.count
+        return tiles
+    }
+
+    func calculatePart1(_ input: [String]) -> Int {
+        let tiles = runInitialMoves(input)
+
+        return tiles.filter { $0.value.black }.count
     }
 
     func calculatePart2(_ input: [String]) -> Int {
-        return 0
+        var tiles = runInitialMoves(input)
+
+        for _ in 0...99 {
+            tiles = runFlipLogic(dict: tiles)
+        }
+
+        return tiles.filter { $0.value.black }.count
+    }
+
+    func neighborsFromPoint(_ point: [Double]) -> [[Double]] {
+        let x = point.first!
+        let y = point.last!
+        return [
+            [x - 1, y],
+            [x - 0.5, y + 1],
+            [x + 0.5, y + 1],
+            [x + 1, y],
+            [x + 0.5, y - 1],
+            [x - 0.5, y - 1]
+        ]
+    }
+
+    func runFlipLogic(dict: TileDict) -> TileDict {
+        var newDict = dict
+
+        var whiteTilesToCheck: Set<[Double]> = []
+
+        for (key, tile) in dict.filter({ $0.value.black }) {
+            let neighbors = neighborsFromPoint(key)
+            let blackNeighbors = neighbors.countWhere { point in
+                if let tile = dict[point], tile.black {
+                    return true
+                } else {
+                    whiteTilesToCheck.insert(point)
+                    return false
+                }
+            }
+            if blackNeighbors == 0 || blackNeighbors > 2 {
+                var newTile = tile
+                newTile.flip()
+                newDict[key] = newTile
+            }
+        }
+
+        whiteTilesToCheck.forEach { key in
+            let neighbors = neighborsFromPoint(key)
+            let blackNeighbors = neighbors.countWhere { point in
+                return dict[point]?.black ?? false
+            }
+            if blackNeighbors == 2 {
+                newDict[key] = Tile()
+            }
+        }
+
+        return newDict
     }
 }
