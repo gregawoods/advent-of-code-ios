@@ -21,7 +21,7 @@ struct Day20: DayProtocol {
         }
     }
 
-    struct Tile {
+    struct Tile: Equatable {
         let id: Int
         var grid: [Point]
 
@@ -45,6 +45,10 @@ struct Day20: DayProtocol {
             self.grid = grid
         }
 
+        static func == (lhs: Tile, rhs: Tile) -> Bool {
+            return lhs.id == rhs.id
+        }
+
         var topEdge: [Bool] {
             return grid.filter { $0.y == 0 }.sorted(by: { $0.x < $1.x }).map { $0.active }
         }
@@ -56,6 +60,23 @@ struct Day20: DayProtocol {
         }
         var leftEdge: [Bool] {
             return grid.filter { $0.x == 0 }.sorted(by: { $0.y < $1.y }).map { $0.active }
+        }
+
+        func getEdge(_ edge: Edge) -> [Bool] {
+            switch edge {
+            case.top:
+                return topEdge
+            case .right:
+                return rightEdge
+            case .bottom:
+                return bottomEdge
+            case .left:
+                return leftEdge
+            }
+        }
+
+        var edges: [[Bool]] {
+            return [topEdge, rightEdge, bottomEdge, leftEdge]
         }
 
         mutating func rotateRight() {
@@ -98,8 +119,55 @@ struct Day20: DayProtocol {
         }
     }
 
+    enum Edge: CaseIterable {
+        case top
+        case right
+        case bottom
+        case left
+    }
+
+    struct Match {
+        let tileA: Int
+        let tileB: Int
+        let edgeA: Edge
+        let edgeB: Edge
+    }
+
     func calculatePart1(_ input: [String]) -> Int {
-        return 0
+        var matches: [Int: [Edge: [Int]]] = [:]
+
+        let tiles = input.map { Tile(input: $0) }
+
+        for tileA in tiles {
+            var temp: [Edge: [Int]] = [
+                .top: [],
+                .right: [],
+                .bottom: [],
+                .left: []
+            ]
+            for tileB in tiles {
+                if tileA == tileB { continue }
+                for edgeA in Edge.allCases {
+                    for edgeB in Edge.allCases {
+                        if tileA.getEdge(edgeA) == tileB.getEdge(edgeB) || tileA.getEdge(edgeA).reversed() == tileB.getEdge(edgeB) {
+                            temp[edgeA]!.append(tileB.id)
+                        }
+                    }
+                }
+            }
+            matches[tileA.id] = temp
+        }
+
+        var corners: [Int] = []
+
+        matches.forEach { (id, edges) in
+            let unmatched = edges.values.filter({ $0.count == 0 }).count
+            if unmatched == 2 {
+                corners.append(id)
+            }
+        }
+
+        return corners.reduce(1, { $0 * $1 })
     }
 
     func calculatePart2(_ input: [String]) -> Int {
