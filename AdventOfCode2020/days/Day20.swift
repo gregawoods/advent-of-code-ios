@@ -21,10 +21,15 @@ struct Day20: DayProtocol {
         }
     }
 
-    struct Tile: Equatable {
+    class Tile: Equatable, Hashable {
         let id: Int
         var grid: [Point]
 
+        var tTop: Tile?
+        var tRight: Tile?
+        var tBottom: Tile?
+        var tLeft: Tile?
+        
         init(input: String) {
             let lines = input.components(separatedBy: "\n")
 
@@ -47,6 +52,10 @@ struct Day20: DayProtocol {
 
         static func == (lhs: Tile, rhs: Tile) -> Bool {
             return lhs.id == rhs.id
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
         }
 
         var topEdge: [Bool] {
@@ -79,7 +88,7 @@ struct Day20: DayProtocol {
             return [topEdge, rightEdge, bottomEdge, leftEdge]
         }
 
-        mutating func rotateRight() {
+        func rotateRight() {
             self.grid = grid.map { point in
                 var copy = point
                 copy.rotate(degrees: 90, aroundX: 4.5, aroundY: 4.5)
@@ -87,7 +96,7 @@ struct Day20: DayProtocol {
             }
         }
 
-        mutating func rotateLeft() {
+        func rotateLeft() {
             self.grid = grid.map { point in
                 var copy = point
                 copy.rotate(degrees: -90, aroundX: 4.5, aroundY: 4.5)
@@ -95,7 +104,7 @@ struct Day20: DayProtocol {
             }
         }
 
-        mutating func flipX() {
+        func flipX() {
             self.grid = grid.map { point in
                 var copy = point
                 let diff = (Double(point.x) - 4.5) * 2
@@ -104,7 +113,7 @@ struct Day20: DayProtocol {
             }
         }
 
-        mutating func flipY() {
+        func flipY() {
             self.grid = grid.map { point in
                 var copy = point
                 let diff = (Double(point.y) - 4.5) * 2
@@ -124,6 +133,19 @@ struct Day20: DayProtocol {
         case right
         case bottom
         case left
+
+        var neighbor: Edge {
+            switch self {
+            case .top:
+                return .bottom
+            case .right:
+                return .left
+            case .bottom:
+                return .top
+            case .left:
+                return .right
+            }
+        }
     }
 
     struct Match {
@@ -133,44 +155,126 @@ struct Day20: DayProtocol {
         let edgeB: Edge
     }
 
-    func calculatePart1(_ input: [String]) -> Int {
-        var matches: [Int: [Edge: [Int]]] = [:]
+    typealias MatchDict = [Tile: [Tile]]
 
-        let tiles = input.map { Tile(input: $0) }
+    func buildMatches(tiles: [Tile]) -> MatchDict {
+        var matches: MatchDict = [:]
 
         for tileA in tiles {
-            var temp: [Edge: [Int]] = [
-                .top: [],
-                .right: [],
-                .bottom: [],
-                .left: []
-            ]
+            var temp: [Tile] = []
             for tileB in tiles {
                 if tileA == tileB { continue }
                 for edgeA in Edge.allCases {
                     for edgeB in Edge.allCases {
-                        if tileA.getEdge(edgeA) == tileB.getEdge(edgeB) || tileA.getEdge(edgeA).reversed() == tileB.getEdge(edgeB) {
-                            temp[edgeA]!.append(tileB.id)
+                        let computedEdgeA = tileA.getEdge(edgeA)
+                        let computedEdgeB = tileB.getEdge(edgeB)
+                        if computedEdgeA == computedEdgeB || computedEdgeA.reversed() == computedEdgeB {
+                            temp.append(tileB)
                         }
                     }
                 }
             }
-            matches[tileA.id] = temp
+            matches[tileA] = temp
         }
 
-        var corners: [Int] = []
+        return matches
+    }
 
-        matches.forEach { (id, edges) in
-            let unmatched = edges.values.filter({ $0.count == 0 }).count
-            if unmatched == 2 {
-                corners.append(id)
+    func calculatePart1(_ input: [String]) -> Int {
+        let tiles = input.map { Tile(input: $0) }
+        let matches = buildMatches(tiles: tiles)
+        var corners: [Tile] = []
+
+        matches.forEach { (tile, matches) in
+            if matches.count == 2 {
+                corners.append(tile)
             }
         }
 
-        return corners.reduce(1, { $0 * $1 })
+        return corners.reduce(1, { $0 * $1.id })
     }
 
     func calculatePart2(_ input: [String]) -> Int {
+        let tiles = input.map { Tile(input: $0) }
+        let matches = buildMatches(tiles: tiles)
+
+        rotateNeighborsRecursively(tile: tiles.first!, allMatches: matches)
+
         return 0
+    }
+
+    func rotateNeighborsRecursively(tile tileA: Tile, allMatches: MatchDict) {
+        if (tileA.tLeft != nil) || (tileA.tRight != nil) || (tileA.tTop != nil) || (tileA.tBottom != nil) { return }
+
+        for tileB in allMatches[tileA]! {
+            var matched = false
+            repeat {
+                for edgeA in Edge.allCases {
+                    for _ in 1...4 {
+                        let computedEdgeA = tileA.getEdge(edgeA)
+                        let computedEdgeB = tileB.getEdge(edgeA.neighbor)
+                        if computedEdgeA == computedEdgeB {
+                            switch edgeA {
+                            case .top:
+                                tileA.tTop = tileB
+                            case .right:
+                                tileA.tRight = tileB
+                            case .bottom:
+                                tileA.tBottom = tileB
+                            case .left:
+                                tileA.tLeft = tileB
+                            }
+                            matched = true
+                        } else if computedEdgeA == computedEdgeB.reversed() {
+                            if edgeA == .left || edgeA == .right {
+                                tileB.flipY()
+                            } else {
+                                tileB.flipX()
+                            }
+                            switch edgeA {
+                            case .top:
+                                tileA.tTop = tileB
+                            case .right:
+                                tileA.tRight = tileB
+                            case .bottom:
+                                tileA.tBottom = tileB
+                            case .left:
+                                tileA.tLeft = tileB
+                            }
+                            matched = true
+                        } else {
+                            tileB.rotateRight()
+                        }
+                    }
+                }
+            } while matched == false
+
+            rotateNeighborsRecursively(tile: tileB, allMatches: allMatches)
+        }
+    }
+
+    // Rotates and flips tileB until it aligns with tileA
+    // Then, returns the edge of the connection (relative to A)
+    //
+    func rotateTillAlligned(tileA: Tile, tileB: Tile) -> Edge {
+        repeat {
+            for edgeA in Edge.allCases {
+                for _ in 1...4 {
+                    let computedEdgeA = tileA.getEdge(edgeA)
+                    let computedEdgeB = tileB.getEdge(edgeA.neighbor)
+                    if computedEdgeA == computedEdgeB {
+                        return edgeA
+                    } else if computedEdgeA == computedEdgeB.reversed() {
+                        if edgeA == .left || edgeA == .right {
+                            tileB.flipY()
+                        } else {
+                            tileB.flipX()
+                        }
+                        return edgeA
+                    }
+                    tileB.rotateRight()
+                }
+            }
+        } while true
     }
 }
