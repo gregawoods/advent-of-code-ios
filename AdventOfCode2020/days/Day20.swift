@@ -200,6 +200,36 @@ struct Day20: DayProtocol {
 
         rotateNeighborsRecursively(tile: tiles.first!, allMatches: matches)
 
+        // Find top left and build grid system from there
+        var anchor = tiles.first { tile in
+            tile.tTop == nil && tile.tLeft == nil
+        }!
+        var current = anchor
+
+        var xOffset = 0
+        var yOffset = 0
+        var image: [Point] = []
+
+        // Combine all tiles into an image
+        repeat {
+            for point in current.grid {
+                if point.x == 0 || point.x == 9 || point.y == 0 || point.y == 9 { continue }
+                let newPoint = Point(point.x + xOffset - 1, point.y + yOffset - 1, point.active)
+                image.append(newPoint)
+            }
+            if let nextTile = current.tRight {
+                current = nextTile
+                xOffset = image.last!.x
+            } else if let nextTile = anchor.tBottom {
+                anchor = nextTile
+                current = nextTile
+                xOffset = 0
+                yOffset = image.last!.y
+            } else {
+                break
+            }
+        } while true
+
         return 0
     }
 
@@ -252,6 +282,14 @@ struct Day20: DayProtocol {
             rotateNeighborsRecursively(tile: tileB, allMatches: allMatches)
         }
     }
+    
+//    func addPointsToImage(points: [Point], offsetX: Int, offsetY: Int) -> [Point] {
+//        var newPoints = points
+//
+//        for point in
+//
+//        return newPoints
+//    }
 
     // Rotates and flips tileB until it aligns with tileA
     // Then, returns the edge of the connection (relative to A)
