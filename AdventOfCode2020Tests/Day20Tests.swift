@@ -265,12 +265,12 @@ class Day20Tests: XCTestCase {
 
     func testPart2Sample() {
         let result = day.calculatePart2(sample)
-        XCTAssertEqual(result, 0)
+        XCTAssertEqual(result, 273)
     }
 
     func testPart2() throws {
         let result = day.calculatePart2(input)
         print("Day 20 Part 2: \(result)")
-        XCTAssertEqual(result, 0)
+        XCTAssertEqual(result, 1885)
     }
 }

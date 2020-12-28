@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol Rotatable {
+protocol Coordinate {
     var x: Int { get set }
     var y: Int { get set }
 }
 
-extension Rotatable {
+extension Coordinate {
     mutating func rotate(degrees: Int, aroundX: Double = 0, aroundY: Double = 0) {
         let radians = Double(degrees) * Double(Double.pi / 180.0)
 
@@ -30,7 +30,15 @@ extension Rotatable {
     }
 }
 
-struct Point: Rotatable {
+extension Array where Element: Coordinate {
+    func findAt(x: Int, y: Int) -> Element? {
+        return first(where: { coord in
+            coord.x == x && coord.y == y
+        })
+    }
+}
+
+struct Point: Coordinate {
     var x: Int
     var y: Int
 
