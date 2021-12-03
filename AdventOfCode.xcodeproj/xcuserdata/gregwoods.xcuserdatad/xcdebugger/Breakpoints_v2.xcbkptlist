@@ -173,8 +173,8 @@
             filePath = "AdventOfCode/2021/day3_21.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "part2(_:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -7,12 +7,6 @@
 
 import Foundation
 
-extension StringProtocol {
-    subscript(offset: Int) -> Character {
-        self[index(startIndex, offsetBy: offset)]
-    }
-}
-
 struct Y21_Day3 : DayProtocol {
 
     func part1(_ input: [String]) -> Int {

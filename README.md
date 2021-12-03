@@ -1,3 +1,5 @@
-# Advent of Code 2020
+# Advent of Code
 
-See https://adventofcode.com/2020
+Advent of Code is an annual coding challenge.
+
+For more info, see: https://adventofcode.com
