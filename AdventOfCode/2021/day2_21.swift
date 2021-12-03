@@ -9,7 +9,7 @@ import Foundation
 
 struct Y21_Day2 : DayProtocol {
 
-    enum Dir {
+    enum Dir: String {
         case forward
         case up
         case down
@@ -22,15 +22,11 @@ struct Y21_Day2 : DayProtocol {
     
     fileprivate func parseStep(stepStr: String) -> Step {
         let parts = stepStr.components(separatedBy: " ")
-        let amount = Int(parts[1])!
-        
-        if parts[0] == "forward" {
-            return Step(amount: amount, dir: .forward)
-        } else if parts [0] == "up" {
-            return Step(amount: amount, dir: .up)
-        } else {
-            return Step(amount: amount, dir: .down)
-        }
+
+        return Step(
+            amount: Int(parts[1])!,
+            dir: Dir(rawValue: parts[0])!
+        )
     }
     
     func part1(_ input: [String]) -> Int {
