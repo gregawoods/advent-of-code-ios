@@ -33,7 +33,7 @@ struct Y21_Day4 : DayProtocol {
             }
         }
 
-        static func == (lhs: Y21_Day4.Board, rhs: Y21_Day4.Board) -> Bool {
+        static func == (lhs: Board, rhs: Board) -> Bool {
             return lhs.rows == rhs.rows
         }
 
