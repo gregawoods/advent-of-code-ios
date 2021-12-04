@@ -30,9 +30,9 @@ class Y21Day4Tests: XCTestCase {
     18  8 23 26 20
     22 11 13  6  5
      2  0 12  3  7
-    """
+    """.components(separatedBy: "\n\n")
 
-    let input = FileReader(file: "day4_21").fileContents!
+    let input = FileReader(file: "day4_21").chunksByNewline
 
     func testPart1Sample() {
         XCTAssertEqual(Y21_Day4().part1(sample), 4512)

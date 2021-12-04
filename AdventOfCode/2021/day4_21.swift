@@ -9,41 +9,39 @@ import Foundation
 
 struct Y21_Day4 : DayProtocol {
 
-    class Spot {
+    class Spot: Equatable {
         let value: Int
         var on: Bool = false
 
         init(_ val: Int) {
             self.value = val
         }
+        
+        static func == (lhs: Spot, rhs: Spot) -> Bool {
+            lhs.value == rhs.value
+        }
     }
 
     struct Board: Equatable {
         let rows: [[Spot]]
-        let id: Int
         
-        init(id: Int, input: String) {
-            self.id = id
-
-            let lines = input.components(separatedBy: "\n").filter { $0 != "" }
+        init(input: String) {
+            let lines = input.components(separatedBy: "\n")
 
             self.rows = lines.map { rowStr in
-                let ints = rowStr.components(separatedBy: " ").filter{ $0 != "" }.map{
-                    Int($0)!
-                }
-                return ints.map { Spot($0) }
+                return rowStr.toIntegerArray(" ").map { Spot($0) }
             }
         }
 
         static func == (lhs: Y21_Day4.Board, rhs: Y21_Day4.Board) -> Bool {
-            lhs.id == rhs.id
+            return lhs.rows == rhs.rows
         }
 
         func play(_ val: Int) {
             for row in rows {
-                for step in row {
-                    if step.value == val {
-                        step.on = true
+                for spot in row {
+                    if spot.value == val {
+                        spot.on = true
                         return
                     }
                 }
@@ -51,15 +49,10 @@ struct Y21_Day4 : DayProtocol {
         }
 
         var width: Int {
-            if let first = rows.first {
-                return first.count
-            }
-            return 0
+            return rows.first?.count ?? 0
         }
 
-        var winner: Bool {
-            if rows.count == 0 { return false }
-
+        var isWinner: Bool {
             for row in rows {
                 if row.allSatisfy({ $0.on }) {
                     return true
@@ -67,8 +60,8 @@ struct Y21_Day4 : DayProtocol {
             }
 
             for n in (0...(width-1)) {
-                let spots = rows.map({ $0[n] })
-                if spots.allSatisfy({ $0.on  }) {
+                let column = rows.map({ $0[n] })
+                if column.allSatisfy({ $0.on  }) {
                     return true
                 }
             }
@@ -83,20 +76,14 @@ struct Y21_Day4 : DayProtocol {
         }
     }
     
-    func part1(_ input: String) -> Int {
-        let split = input.components(separatedBy: "\n\n")
-        let steps = split[0].components(separatedBy: ",").map({
-            return Int($0)!
-        })
-
-        let boards = (1...(split.count-1)).filter { split[$0] != "" }.map { n in
-            Board(id: n, input: split[n])
-        }
+    func part1(_ input: [String]) -> Int {
+        let steps = input[0].toIntegerArray()
+        let boards = (1...(input.count-1)).map { Board(input: input[$0]) }
 
         for step in steps {
             for board in boards {
                 board.play(step)
-                if board.winner {
+                if board.isWinner {
                     return board.unmarkedTotal * step
                 }
             }
@@ -105,20 +92,14 @@ struct Y21_Day4 : DayProtocol {
         return 0
     }
 
-    func part2(_ input: String) -> Int {
-        let split = input.components(separatedBy: "\n\n")
-        let steps = split[0].components(separatedBy: ",").map({
-            return Int($0)!
-        })
-
-        var boards = (1...(split.count-1)).filter { split[$0] != "" }.map { n in
-            Board(id: n, input: split[n])
-        }
+    func part2(_ input: [String]) -> Int {
+        let steps = input[0].toIntegerArray()
+        var boards = (1...(input.count-1)).map { Board(input: input[$0]) }
 
         for step in steps {
             for board in boards {
                 board.play(step)
-                if board.winner {
+                if board.isWinner {
                     if boards.count == 1 {
                         return board.unmarkedTotal * step
                     } else {

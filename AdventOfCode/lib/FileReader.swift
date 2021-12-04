@@ -12,7 +12,6 @@ struct FileReader {
 
     init(file: String) {
         do {
-//            let path = Bundle.main.path(forResource: file, ofType: "txt", inDirectory: "2020")!
             let path = Bundle.main.path(forResource: file, ofType: "txt")!
             let data = try String(contentsOfFile: path, encoding: .utf8)
             self.fileContents = data
