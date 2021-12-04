@@ -150,7 +150,7 @@ struct Day19: DayProtocol {
         var index = 0
 
         let matching = lines.filter {
-            print("\(index)/\(count)")
+//            print("\(index)/\(count)")
             index += 1
             store.maxDepth = $0.count
             return store.checkMessage(message: $0)

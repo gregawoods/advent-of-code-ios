@@ -42,5 +42,4 @@ class Y21Day3Tests: XCTestCase {
     func testPart2() throws {
         XCTAssertEqual(Y21_Day3().part2(input), 2784375)
     }
-
 }
