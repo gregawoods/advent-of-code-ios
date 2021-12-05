@@ -145,12 +145,9 @@ struct Day19: DayProtocol {
         let lines = input[1].components(separatedBy: "\n")
         let rules = input[0].components(separatedBy: "\n").map { Rule($0) }
         var store = RuleStore(rules: rules)
-
-        let count = lines.count
         var index = 0
 
         let matching = lines.filter {
-//            print("\(index)/\(count)")
             index += 1
             store.maxDepth = $0.count
             return store.checkMessage(message: $0)

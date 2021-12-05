@@ -170,7 +170,7 @@ class Day20Tests: XCTestCase {
         ..###..###
         """
 
-        var tile = Day20.Tile(input: sample)
+        let tile = Day20.Tile(input: sample)
 
         tile.rotateRight()
 
@@ -219,7 +219,7 @@ class Day20Tests: XCTestCase {
         ..###..###
         """
 
-        var tile = Day20.Tile(input: sample)
+        let tile = Day20.Tile(input: sample)
 
         tile.flipX()
 

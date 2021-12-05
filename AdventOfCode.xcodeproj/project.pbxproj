@@ -73,6 +73,9 @@
 		C3BA15BD275B2A6A0034903F /* day4_21.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BA15BC275B2A6A0034903F /* day4_21.swift */; };
 		C3BA15BF275B2A780034903F /* day4_21.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3BA15BE275B2A780034903F /* day4_21.txt */; };
 		C3BA15C1275B2ACD0034903F /* Y21Day4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BA15C0275B2ACD0034903F /* Y21Day4Tests.swift */; };
+		C3BA15C3275C70670034903F /* day5_21.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BA15C2275C70670034903F /* day5_21.swift */; };
+		C3BA15C5275C70740034903F /* day5_21.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3BA15C4275C70740034903F /* day5_21.txt */; };
+		C3BA15C7275C70A40034903F /* Y21Day5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BA15C6275C70A40034903F /* Y21Day5Tests.swift */; };
 		C3BBE881257B4B11006182AB /* Day5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBE880257B4B11006182AB /* Day5.swift */; };
 		C3BBE885257B4B20006182AB /* day5.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3BBE884257B4B20006182AB /* day5.txt */; };
 		C3BBE88D257C9A07006182AB /* Day2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBE88C257C9A07006182AB /* Day2Tests.swift */; };
@@ -184,6 +187,9 @@
 		C3BA15BC275B2A6A0034903F /* day4_21.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day4_21.swift; sourceTree = "<group>"; };
 		C3BA15BE275B2A780034903F /* day4_21.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day4_21.txt; sourceTree = "<group>"; };
 		C3BA15C0275B2ACD0034903F /* Y21Day4Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Y21Day4Tests.swift; sourceTree = "<group>"; };
+		C3BA15C2275C70670034903F /* day5_21.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day5_21.swift; sourceTree = "<group>"; };
+		C3BA15C4275C70740034903F /* day5_21.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day5_21.txt; sourceTree = "<group>"; };
+		C3BA15C6275C70A40034903F /* Y21Day5Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Y21Day5Tests.swift; sourceTree = "<group>"; };
 		C3BBE880257B4B11006182AB /* Day5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day5.swift; sourceTree = "<group>"; };
 		C3BBE884257B4B20006182AB /* day5.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day5.txt; sourceTree = "<group>"; };
 		C3BBE88C257C9A07006182AB /* Day2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day2Tests.swift; sourceTree = "<group>"; };
@@ -377,6 +383,8 @@
 				C34CE7A02759DAF7005D4272 /* day3_21.txt */,
 				C3BA15BC275B2A6A0034903F /* day4_21.swift */,
 				C3BA15BE275B2A780034903F /* day4_21.txt */,
+				C3BA15C2275C70670034903F /* day5_21.swift */,
+				C3BA15C4275C70740034903F /* day5_21.txt */,
 			);
 			path = 2021;
 			sourceTree = "<group>";
@@ -419,6 +427,7 @@
 				C3B0BCEA2758663500CDA0C8 /* Y21Day2Tests.swift */,
 				C34CE7A22759DB09005D4272 /* Y21Day3Tests.swift */,
 				C3BA15C0275B2ACD0034903F /* Y21Day4Tests.swift */,
+				C3BA15C6275C70A40034903F /* Y21Day5Tests.swift */,
 			);
 			path = 2021;
 			sourceTree = "<group>";
@@ -430,8 +439,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C36648CE25787145008F719C /* Build configuration list for PBXNativeTarget "AdventOfCode" */;
 			buildPhases = (
-				C366490525788A09008F719C /* Run Swiftlint */,
 				C36648A525787142008F719C /* Sources */,
+				C366490525788A09008F719C /* Run Swiftlint */,
 				C36648A625787142008F719C /* Frameworks */,
 				C36648A725787142008F719C /* Resources */,
 			);
@@ -504,6 +513,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3BA15C5275C70740034903F /* day5_21.txt in Resources */,
 				C342D0B5258482A800F56D39 /* day12.txt in Resources */,
 				C36648B425787145008F719C /* Preview Assets.xcassets in Resources */,
 				C389014425840D5500ED952C /* day11.txt in Resources */,
@@ -562,7 +572,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "#if which swiftlint >/dev/null; then\n#  swiftlint autocorrect && swiftlint\n#else\n#  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -598,6 +608,7 @@
 				C3F7C8272591837000E693B4 /* Day20.swift in Sources */,
 				C36BF155258D52270093BC94 /* Day18.swift in Sources */,
 				C3BBE881257B4B11006182AB /* Day5.swift in Sources */,
+				C3BA15C3275C70670034903F /* day5_21.swift in Sources */,
 				C389BE8F258840D200C5975E /* Day14.swift in Sources */,
 				C385A49F2582FFD8009CC5F8 /* Cache.swift in Sources */,
 				C3269B9F258AE27100C4F805 /* Day16.swift in Sources */,
@@ -634,6 +645,7 @@
 				C389014825840D6100ED952C /* Day11Tests.swift in Sources */,
 				C36BF165258DC0040093BC94 /* Day19Tests.swift in Sources */,
 				C34CE7A32759DB09005D4272 /* Y21Day3Tests.swift in Sources */,
+				C3BA15C7275C70A40034903F /* Y21Day5Tests.swift in Sources */,
 				C3BBE891257C9A10006182AB /* Day3Tests.swift in Sources */,
 				C3BBE899257C9A20006182AB /* Day5Tests.swift in Sources */,
 				C342D0B9258482BF00F56D39 /* Day12Tests.swift in Sources */,
