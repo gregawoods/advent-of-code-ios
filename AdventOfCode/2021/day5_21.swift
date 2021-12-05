@@ -8,32 +8,13 @@
 import Foundation
 
 struct Y21_Day5 : DayProtocol {
+    
+    func parseLine(_ input: String) -> Line {
+        let split = input.components(separatedBy: " -> ")
+        let start = split[0].toIntegerArray()
+        let end = split[1].toIntegerArray()
 
-    struct Line {
-        let x1: Int
-        let y1: Int
-        let x2: Int
-        let y2: Int
-        
-        init(_ input: String) {
-            let split = input.components(separatedBy: " -> ")
-            
-            let start = split[0].toIntegerArray()
-            self.x1 = start[0]
-            self.y1 = start[1]
-
-            let end = split[1].toIntegerArray()
-            self.x2 = end[0]
-            self.y2 = end[1]
-        }
-        
-        var horizontal: Bool {
-            return y1 == y2
-        }
-        
-        var vertical: Bool {
-            return x1 == x2
-        }
+        return Line(x1: start[0], y1: start[1], x2: end[0], y2: end[1])
     }
     
     func buildGrid(lines: [Line]) -> [[Int]] {
@@ -54,22 +35,14 @@ struct Y21_Day5 : DayProtocol {
     }
 
     func part1(_ input: [String]) -> Int {
-        let lines = input.map { Line($0) }
+        let lines = input.map { parseLine($0) }
         var grid = buildGrid(lines: lines)
 
         for line in lines {
-            if line.horizontal {
-                let range = line.x2 > line.x1 ? (line.x1...line.x2) : (line.x2...line.x1)
-                for n in range {
-                    grid[line.y1][n] += 1
+            if line.vertical || line.horizontal {
+                for point in line.stride {
+                    grid[point.y][point.x] += 1
                 }
-            } else if line.vertical {
-                let range = line.y2 > line.y1 ? (line.y1...line.y2) : (line.y2...line.y1)
-                for n in range {
-                    grid[n][line.x1] += 1
-                }
-            } else {
-                // Ignore
             }
         }
 
@@ -77,36 +50,12 @@ struct Y21_Day5 : DayProtocol {
     }
 
     func part2(_ input: [String]) -> Int {
-        let lines = input.map { Line($0) }
+        let lines = input.map { parseLine($0) }
         var grid = buildGrid(lines: lines)
 
         for line in lines {
-            if line.horizontal {
-                let range = line.x2 > line.x1 ? (line.x1...line.x2) : (line.x2...line.x1)
-                for n in range {
-                    grid[line.y1][n] += 1
-                }
-            } else if line.vertical {
-                let range = line.y2 > line.y1 ? (line.y1...line.y2) : (line.y2...line.y1)
-                for n in range {
-                    grid[n][line.x1] += 1
-                }
-            } else {
-                let xStep = line.x2 > line.x1 ? 1 : -1
-                var yArray: [Int] = []
-
-                if line.y2 > line.y1 {
-                    yArray = Array((line.y1...line.y2))
-                } else {
-                    yArray = Array(line.y2...line.y1).reversed()
-                }
-
-                var index = 0
-                for x in stride(from: line.x1, through: line.x2, by: xStep) {
-                    let y = yArray[index]
-                    grid[y][x] += 1
-                    index += 1
-                }
+            for point in line.stride {
+                grid[point.y][point.x] += 1
             }
         }
 
