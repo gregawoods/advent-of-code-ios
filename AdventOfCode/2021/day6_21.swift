@@ -23,7 +23,7 @@ struct Y21_Day6 : DayProtocol {
 
         return newFish
     }
-    
+
     func part1(_ input: [Int]) -> Int {
         var fish = input
         
@@ -38,32 +38,18 @@ struct Y21_Day6 : DayProtocol {
         var allNumbers: [Int: Int] = [:]
 
         for n in input {
-            if allNumbers.keys.contains(n) {
-                allNumbers[n]! += 1
-            } else {
-                allNumbers[n] = 1
-            }
+            allNumbers[n, default: 0] += 1
         }
 
         for _ in 0...255 {
-            var newNumbers: [Int: Int] = [
-                0: 0,
-                1: 0,
-                2: 0,
-                3: 0,
-                4: 0,
-                5: 0,
-                6: 0,
-                7: 0,
-                8: 0
-            ]
-
+            var newNumbers: [Int: Int] = [:]
+            
             allNumbers.forEach { num, count in
                 if num == 0 {
-                    newNumbers[8]! += count
-                    newNumbers[6]! += count
+                    newNumbers[8] = count
+                    newNumbers[6, default: 0] += count
                 } else {
-                    newNumbers[num - 1]! += count
+                    newNumbers[num - 1, default: 0] += count
                 }
             }
 

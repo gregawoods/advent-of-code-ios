@@ -22,34 +22,6 @@ extension CoordinatePair {
 
     var horizontal: Bool { a.y == b.y }
     var vertical: Bool { a.x == b.x }
-    var diagonal: Bool { !horizontal && !vertical && (xStride.count == yStride.count) }
-
-    var xStride: [Int] {
-        return a.x < b.x ? Array(a.x...b.x) : (b.x...a.x).reversed()
-    }
-
-    var yStride: [Int] {
-        return a.y < b.y ? Array(a.y...b.y) : (b.y...a.y).reversed()
-    }
-
-    var stride: [Point] {
-        if horizontal {
-            return xStride.map { x in
-                Point(x, a.y)
-            }
-        } else if vertical {
-            return yStride.map { y in
-                Point(a.x, y)
-            }
-        } else if diagonal {
-            return xStride.enumerated().map { (index, x) in
-                Point(x, yStride[index])
-            }
-        } else {
-            // todo: support lines of arbitrary angles
-            return []
-        }
-    }
 }
 
 struct Line: CoordinatePair {
@@ -59,5 +31,32 @@ struct Line: CoordinatePair {
     init(x1: Int, y1: Int, x2: Int, y2: Int) {
         self.a = Point(x1, y1)
         self.b = Point(x2, y2)
+    }
+
+    lazy var xStride: [Int]  = {
+        return a.x < b.x ? Array(a.x...b.x) : (b.x...a.x).reversed()
+    }()
+
+    lazy var yStride: [Int] = {
+        return a.y < b.y ? Array(a.y...b.y) : (b.y...a.y).reversed()
+    }()
+
+    var stride: [Point] {
+        mutating get {
+            if horizontal {
+                return xStride.map { x in
+                    Point(x, a.y)
+                }
+            } else if vertical {
+                return yStride.map { y in
+                    Point(a.x, y)
+                }
+            } else {
+                // todo: support lines of arbitrary angles
+                return xStride.enumerated().map { (index, x) in
+                    Point(x, yStride[index])
+                }
+            }
+        }
     }
 }

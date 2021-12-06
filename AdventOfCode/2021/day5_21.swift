@@ -38,7 +38,7 @@ struct Y21_Day5 : DayProtocol {
         let lines = input.map { parseLine($0) }
         var grid = buildGrid(lines: lines)
 
-        for line in lines {
+        for var line in lines {
             if line.vertical || line.horizontal {
                 for point in line.stride {
                     grid[point.y][point.x] += 1
@@ -53,7 +53,7 @@ struct Y21_Day5 : DayProtocol {
         let lines = input.map { parseLine($0) }
         var grid = buildGrid(lines: lines)
 
-        for line in lines {
+        for var line in lines {
             for point in line.stride {
                 grid[point.y][point.x] += 1
             }
