@@ -9,7 +9,7 @@ import Foundation
 
 protocol CoordinatePair {
     associatedtype CoordinateType: Coordinate
-    
+
     var a: CoordinateType { get }
     var b: CoordinateType { get }
 }
@@ -27,7 +27,7 @@ extension CoordinatePair {
 struct Line: CoordinatePair {
     let a: Point
     let b: Point
-    
+
     init(x1: Int, y1: Int, x2: Int, y2: Int) {
         self.a = Point(x1, y1)
         self.b = Point(x2, y2)

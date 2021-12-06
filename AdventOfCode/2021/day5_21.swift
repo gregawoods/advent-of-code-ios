@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Y21_Day5 : DayProtocol {
-    
+struct Y21Day5: DayProtocol {
+
     func parseLine(_ input: String) -> Line {
         let split = input.components(separatedBy: " -> ")
         let start = split[0].toIntegerArray()
@@ -16,12 +16,12 @@ struct Y21_Day5 : DayProtocol {
 
         return Line(x1: start[0], y1: start[1], x2: end[0], y2: end[1])
     }
-    
+
     func buildGrid(lines: [Line]) -> [[Int]] {
         let width = lines.map { [$0.x1, $0.x2] }.flatMap { $0 }.max()!
         let height = lines.map { [$0.y1, $0.y2] }.flatMap { $0 }.max()!
-        
-        var grid:[[Int]] = []
+
+        var grid: [[Int]] = []
 
         // popuplate grid with zeros
         for x in 0...height {

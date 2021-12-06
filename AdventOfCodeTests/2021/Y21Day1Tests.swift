@@ -13,10 +13,10 @@ class Y21Day1Tests: XCTestCase {
     let input = FileReader(file: "day1_21").arrayOfInts
 
     func testDay1Part1() throws {
-        XCTAssertEqual(Y21_Day1().part1(input), 1624)
+        XCTAssertEqual(Y21Day1().part1(input), 1624)
     }
 
     func testDay1Part2() throws {
-        XCTAssertEqual(Y21_Day1().part2(input), 1653)
+        XCTAssertEqual(Y21Day1().part2(input), 1653)
     }
 }

@@ -19,14 +19,6 @@ extension Array where Element: Numeric {
     }
 }
 
-//extension Array where Element: StringProtocol {
-//    func arrayOfInts() -> [Int] {
-//        return map({ Int($0)! })
-//    }
-//}
-//
-////.filter { $0 != nil }
-
 extension Array where Element: Equatable {
     func allIndicesOf(element: Element) -> [Int] {
         var indices: [Int] = []

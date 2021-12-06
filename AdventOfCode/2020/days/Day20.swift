@@ -7,6 +7,7 @@
 
 import Foundation
 
+// swiftlint:disable type_body_length
 struct Day20: DayProtocol {
 
     struct Point: Coordinate {
@@ -287,6 +288,7 @@ struct Day20: DayProtocol {
 
     // Starting with a corner tile, we rotate and flip neighboring tiles until they match up
     // Continue rotating neighbors recursively
+    // swiftlint:disable cyclomatic_complexity
     func rotateNeighborsRecursively(tile tileA: Tile, allMatches: MatchDict) {
         if (tileA.tLeft != nil) || (tileA.tRight != nil) || (tileA.tTop != nil) || (tileA.tBottom != nil) { return }
 

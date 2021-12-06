@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Y21_Day6 : DayProtocol {
-    
+struct Y21Day6: DayProtocol {
+
     func calculateFish(currentFish: [Int]) -> [Int] {
         var newFish: [Int] = []
-        
+
         for n in currentFish {
             if n == 0 {
                 newFish.append(6)
@@ -26,7 +26,7 @@ struct Y21_Day6 : DayProtocol {
 
     func part1(_ input: [Int]) -> Int {
         var fish = input
-        
+
         for _ in 0...79 {
             fish = calculateFish(currentFish: fish)
         }
@@ -43,7 +43,7 @@ struct Y21_Day6 : DayProtocol {
 
         for _ in 0...255 {
             var newNumbers: [Int: Int] = [:]
-            
+
             allNumbers.forEach { num, count in
                 if num == 0 {
                     newNumbers[8] = count
@@ -55,7 +55,7 @@ struct Y21_Day6 : DayProtocol {
 
             allNumbers = newNumbers
         }
-  
+
         return allNumbers.map { $1 }.sum()
     }
 }

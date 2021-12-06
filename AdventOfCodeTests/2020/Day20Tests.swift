@@ -9,6 +9,7 @@ import XCTest
 
 @testable import AdventOfCode
 
+// swiftlint:disable type_body_length
 class Day20Tests: XCTestCase {
 
     let day = Day20()

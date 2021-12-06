@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Y21_Day4 : DayProtocol {
+struct Y21Day4: DayProtocol {
 
     class Spot: Equatable {
         let value: Int
@@ -16,7 +16,7 @@ struct Y21_Day4 : DayProtocol {
         init(_ val: Int) {
             self.value = val
         }
-        
+
         static func == (lhs: Spot, rhs: Spot) -> Bool {
             lhs.value == rhs.value
         }
@@ -24,7 +24,7 @@ struct Y21_Day4 : DayProtocol {
 
     struct Board: Equatable {
         let rows: [[Spot]]
-        
+
         init(input: String) {
             let lines = input.components(separatedBy: "\n")
 
@@ -39,11 +39,9 @@ struct Y21_Day4 : DayProtocol {
 
         func play(_ val: Int) {
             for row in rows {
-                for spot in row {
-                    if spot.value == val {
-                        spot.on = true
-                        return
-                    }
+                for spot in row where spot.value == val {
+                    spot.on = true
+                    return
                 }
             }
         }
@@ -71,11 +69,11 @@ struct Y21_Day4 : DayProtocol {
 
         var unmarkedTotal: Int {
             return rows.map { row in
-                return row.filter{ !$0.on }.map { $0.value }.sum()
+                return row.filter { !$0.on }.map { $0.value }.sum()
             }.sum()
         }
     }
-    
+
     func part1(_ input: [String]) -> Int {
         let steps = input[0].toIntegerArray()
         let boards = (1...(input.count-1)).map { Board(input: input[$0]) }
@@ -88,7 +86,7 @@ struct Y21_Day4 : DayProtocol {
                 }
             }
         }
-        
+
         return 0
     }
 

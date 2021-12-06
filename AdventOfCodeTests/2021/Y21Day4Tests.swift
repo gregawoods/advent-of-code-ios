@@ -35,18 +35,18 @@ class Y21Day4Tests: XCTestCase {
     let input = FileReader(file: "day4_21").chunksByNewline
 
     func testPart1Sample() {
-        XCTAssertEqual(Y21_Day4().part1(sample), 4512)
+        XCTAssertEqual(Y21Day4().part1(sample), 4512)
     }
-    
+
     func testPart1() throws {
-        XCTAssertEqual(Y21_Day4().part1(input), 11536)
+        XCTAssertEqual(Y21Day4().part1(input), 11536)
     }
-    
+
     func testPart2Sample() {
-        XCTAssertEqual(Y21_Day4().part2(sample), 1924)
+        XCTAssertEqual(Y21Day4().part2(sample), 1924)
     }
 
     func testPart2() throws {
-        XCTAssertEqual(Y21_Day4().part2(input), 1284)
+        XCTAssertEqual(Y21Day4().part2(input), 1284)
     }
 }
