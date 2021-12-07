@@ -35,27 +35,24 @@ struct Y21Day6: DayProtocol {
     }
 
     func part2(_ input: [Int]) -> Int {
-        var allNumbers: [Int: Int] = [:]
-
-        for n in input {
-            allNumbers[n, default: 0] += 1
-        }
+        var allNumbers = Array(repeating: 0, count: 9)
+        for n in input { allNumbers[n] += 1 }
 
         for _ in 0...255 {
-            var newNumbers: [Int: Int] = [:]
+            var newNumbers = Array(repeating: 0, count: 9)
 
-            allNumbers.forEach { num, count in
-                if num == 0 {
+            allNumbers.enumerated().forEach { (n, count) in
+                if n == 0 {
                     newNumbers[8] = count
-                    newNumbers[6, default: 0] += count
+                    newNumbers[6] += count
                 } else {
-                    newNumbers[num - 1, default: 0] += count
+                    newNumbers[n-1] += count
                 }
             }
 
             allNumbers = newNumbers
         }
 
-        return allNumbers.map { $1 }.sum()
+        return allNumbers.sum()
     }
 }

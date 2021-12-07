@@ -63,6 +63,9 @@
 		C389BE8F258840D200C5975E /* Day14.swift in Sources */ = {isa = PBXBuildFile; fileRef = C389BE8E258840D200C5975E /* Day14.swift */; };
 		C389BE932588410400C5975E /* day14.txt in Resources */ = {isa = PBXBuildFile; fileRef = C389BE922588410400C5975E /* day14.txt */; };
 		C389BE972588411300C5975E /* Day14Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C389BE962588411300C5975E /* Day14Tests.swift */; };
+		C398C222275F214E003A0BEA /* day7_21.swift in Sources */ = {isa = PBXBuildFile; fileRef = C398C221275F214E003A0BEA /* day7_21.swift */; };
+		C398C224275F2159003A0BEA /* day7_21.txt in Resources */ = {isa = PBXBuildFile; fileRef = C398C223275F2159003A0BEA /* day7_21.txt */; };
+		C398C226275F2188003A0BEA /* Y21Day7Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C398C225275F2188003A0BEA /* Y21Day7Tests.swift */; };
 		C39EE04A257F405F00A0BD73 /* Day8.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39EE049257F405F00A0BD73 /* Day8.swift */; };
 		C39EE04E257F406C00A0BD73 /* day8.txt in Resources */ = {isa = PBXBuildFile; fileRef = C39EE04D257F406C00A0BD73 /* day8.txt */; };
 		C39EE052257F407E00A0BD73 /* Day8Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39EE051257F407E00A0BD73 /* Day8Tests.swift */; };
@@ -181,6 +184,9 @@
 		C389BE8E258840D200C5975E /* Day14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day14.swift; sourceTree = "<group>"; };
 		C389BE922588410400C5975E /* day14.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day14.txt; sourceTree = "<group>"; };
 		C389BE962588411300C5975E /* Day14Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day14Tests.swift; sourceTree = "<group>"; };
+		C398C221275F214E003A0BEA /* day7_21.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day7_21.swift; sourceTree = "<group>"; };
+		C398C223275F2159003A0BEA /* day7_21.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day7_21.txt; sourceTree = "<group>"; };
+		C398C225275F2188003A0BEA /* Y21Day7Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Y21Day7Tests.swift; sourceTree = "<group>"; };
 		C39EE049257F405F00A0BD73 /* Day8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day8.swift; sourceTree = "<group>"; };
 		C39EE04D257F406C00A0BD73 /* day8.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day8.txt; sourceTree = "<group>"; };
 		C39EE051257F407E00A0BD73 /* Day8Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day8Tests.swift; sourceTree = "<group>"; };
@@ -396,6 +402,8 @@
 				C3BA15C4275C70740034903F /* day5_21.txt */,
 				C3BA15CA275D28330034903F /* day6_21.swift */,
 				C3BA15CC275D28620034903F /* day6_21.txt */,
+				C398C221275F214E003A0BEA /* day7_21.swift */,
+				C398C223275F2159003A0BEA /* day7_21.txt */,
 			);
 			path = 2021;
 			sourceTree = "<group>";
@@ -440,6 +448,7 @@
 				C3BA15C0275B2ACD0034903F /* Y21Day4Tests.swift */,
 				C3BA15C6275C70A40034903F /* Y21Day5Tests.swift */,
 				C3BA15CE275D28790034903F /* Y21Day6Tests.swift */,
+				C398C225275F2188003A0BEA /* Y21Day7Tests.swift */,
 			);
 			path = 2021;
 			sourceTree = "<group>";
@@ -525,6 +534,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C398C224275F2159003A0BEA /* day7_21.txt in Resources */,
 				C3BA15C5275C70740034903F /* day5_21.txt in Resources */,
 				C342D0B5258482A800F56D39 /* day12.txt in Resources */,
 				C36648B425787145008F719C /* Preview Assets.xcassets in Resources */,
@@ -585,7 +595,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint > /dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint > /dev/null; then\n  #swiftlint --fix && swiftlint\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -621,6 +631,7 @@
 				C3F7C8272591837000E693B4 /* Day20.swift in Sources */,
 				C36BF155258D52270093BC94 /* Day18.swift in Sources */,
 				C3BBE881257B4B11006182AB /* Day5.swift in Sources */,
+				C398C222275F214E003A0BEA /* day7_21.swift in Sources */,
 				C3BA15C3275C70670034903F /* day5_21.swift in Sources */,
 				C389BE8F258840D200C5975E /* Day14.swift in Sources */,
 				C385A49F2582FFD8009CC5F8 /* Cache.swift in Sources */,
@@ -669,6 +680,7 @@
 				C37C4EF7258C386700E49F6D /* Day17Tests.swift in Sources */,
 				C3F90A632599025300A23FE6 /* Day25Tests.swift in Sources */,
 				C3BBE895257C9A19006182AB /* Day4Tests.swift in Sources */,
+				C398C226275F2188003A0BEA /* Y21Day7Tests.swift in Sources */,
 				C3B0BCEB2758663500CDA0C8 /* Y21Day2Tests.swift in Sources */,
 				C3F7C823259159C100E693B4 /* Day21Tests.swift in Sources */,
 			);
