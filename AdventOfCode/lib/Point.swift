@@ -38,7 +38,7 @@ extension Array where Element: Coordinate {
     }
 }
 
-struct Point: Coordinate {
+struct Point: Coordinate, Equatable, Hashable {
     var x: Int
     var y: Int
 

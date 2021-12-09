@@ -25,14 +25,14 @@ class Y21Day9Tests: XCTestCase {
     }
 
     func testPart1() throws {
-        XCTAssertEqual(Y21Day9().part1(input), 0)
+        XCTAssertEqual(Y21Day9().part1(input), 448)
     }
 
     func testPart2Sample() {
-        XCTAssertEqual(Y21Day9().part2(sample), 0)
+        XCTAssertEqual(Y21Day9().part2(sample), 1134)
     }
 
     func testPart2() throws {
-        XCTAssertEqual(Y21Day9().part2(input), 0)
+        XCTAssertEqual(Y21Day9().part2(input), 1417248)
     }
 }
