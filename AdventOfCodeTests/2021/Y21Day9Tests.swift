@@ -6,27 +6,33 @@
 //
 
 import XCTest
+@testable import AdventOfCode
 
 class Y21Day9Tests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    let sample = """
+    2199943210
+    3987894921
+    9856789892
+    8767896789
+    9899965678
+    """.components(separatedBy: "\n")
+
+    let input = FileReader(file: "day9_21").lines
+
+    func testPart1Sample() {
+        XCTAssertEqual(Y21Day9().part1(sample), 15)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testPart1() throws {
+        XCTAssertEqual(Y21Day9().part1(input), 0)
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testPart2Sample() {
+        XCTAssertEqual(Y21Day9().part2(sample), 0)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testPart2() throws {
+        XCTAssertEqual(Y21Day9().part2(input), 0)
     }
-
 }
