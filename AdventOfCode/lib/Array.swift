@@ -11,6 +11,14 @@ extension Array {
     func countWhere(_ finder: (Element) -> Bool) -> Int {
         return filter(finder).count
     }
+
+    func get(_ index: Int) -> Element? {
+        if 0 <= index && index < count {
+            return self[index]
+        } else {
+            return nil
+        }
+    }
 }
 
 extension Array where Element: Numeric {

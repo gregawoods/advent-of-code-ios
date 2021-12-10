@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Y21Day9: DayProtocol {
 
@@ -17,25 +18,10 @@ struct Y21Day9: DayProtocol {
             for x in 0...(grid[y].count - 1) {
                 let element = grid[y][x]
 
-                if x > 0 {
-                    let left = grid[y][x - 1]
-                    if left <= element { continue }
-                }
-
-                if x < (grid[y].count - 1) {
-                    let right = grid[y][x + 1]
-                    if right <= element { continue }
-                }
-
-                if y > 0 {
-                    let top = grid[y - 1][x]
-                    if top <= element { continue }
-                }
-
-                if y < (grid.count - 1) {
-                    let bottom = grid[y + 1][x]
-                    if bottom <= element { continue }
-                }
+                if let left = grid.get(y)?.get(x - 1), left <= element { continue }
+                if let right = grid.get(y)?.get(x + 1), right <= element { continue }
+                if let top = grid.get(y - 1)?.get(x), top <= element { continue }
+                if let bottom = grid.get(y + 1)?.get(x), bottom <= element { continue }
 
                 sum += (element + 1)
             }
@@ -52,25 +38,10 @@ struct Y21Day9: DayProtocol {
             for x in 0...(grid[y].count - 1) {
                 let element = grid[y][x]
 
-                if x > 0 {
-                    let left = grid[y][x - 1]
-                    if left <= element { continue }
-                }
-
-                if x < (grid[y].count - 1) {
-                    let right = grid[y][x + 1]
-                    if right <= element { continue }
-                }
-
-                if y > 0 {
-                    let top = grid[y - 1][x]
-                    if top <= element { continue }
-                }
-
-                if y < (grid.count - 1) {
-                    let bottom = grid[y + 1][x]
-                    if bottom <= element { continue }
-                }
+                if let left = grid.get(y)?.get(x - 1), left <= element { continue }
+                if let right = grid.get(y)?.get(x + 1), right <= element { continue }
+                if let top = grid.get(y - 1)?.get(x), top <= element { continue }
+                if let bottom = grid.get(y + 1)?.get(x), bottom <= element { continue }
 
                 let n = findNeighbors(x: x, y: y, grid: grid)
                 basins.append(n.count)
@@ -86,24 +57,21 @@ struct Y21Day9: DayProtocol {
 
     func findNeighbors(x: Int, y: Int, grid: [[Int]], neighbors n: Set<Point> = []) -> Set<Point> {
         var neighbors = n
+        neighbors.insert(Point(x, y))
 
-        if x > 0 && grid[y][x - 1] != 9 && !neighbors.contains(Point(x - 1, y)) {
-            neighbors.insert(Point(x - 1, y))
+        if !neighbors.contains(Point(x - 1, y)), let val = grid.get(y)?.get(x - 1), val != 9 {
             neighbors = neighbors.union(findNeighbors(x: x - 1, y: y, grid: grid, neighbors: neighbors))
         }
 
-        if x < (grid[y].count - 1) && grid[y][x + 1] != 9 && !neighbors.contains(Point(x + 1, y)) {
-            neighbors.insert(Point(x + 1, y))
+        if !neighbors.contains(Point(x + 1, y)), let val = grid.get(y)?.get(x + 1), val != 9 {
             neighbors = neighbors.union(findNeighbors(x: x + 1, y: y, grid: grid, neighbors: neighbors))
         }
 
-        if y > 0 && grid[y - 1][x] != 9 && !neighbors.contains(Point(x, y - 1)) {
-            neighbors.insert(Point(x, y - 1))
+        if !neighbors.contains(Point(x, y - 1)), let val = grid.get(y - 1)?.get(x), val != 9 {
             neighbors = neighbors.union(findNeighbors(x: x, y: y - 1, grid: grid, neighbors: neighbors))
         }
 
-        if y < (grid.count - 1) && grid[y + 1][x] != 9 && !neighbors.contains(Point(x, y + 1)) {
-            neighbors.insert(Point(x, y + 1))
+        if !neighbors.contains(Point(x, y + 1)), let val = grid.get(y + 1)?.get(x), val != 9 {
             neighbors = neighbors.union(findNeighbors(x: x, y: y + 1, grid: grid, neighbors: neighbors))
         }
 
