@@ -38,7 +38,7 @@ struct Y21Day11: DayProtocol {
             }
         }
 
-        // check for flashes
+        // check for flashes and set to zero
         for y in 0...(grid.count - 1) {
             for x in 0...(grid[y].count - 1) where grid[y][x] > 9 {
                 grid[y][x] = 0
@@ -46,7 +46,7 @@ struct Y21Day11: DayProtocol {
             }
         }
 
-        // count and reset to 0
+        // count the flashes
         var count = 0
         for y in 0...(grid.count - 1) {
             for x in 0...(grid[y].count - 1) where grid[y][x] == 0 {
