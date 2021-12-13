@@ -15,7 +15,7 @@ struct Y21Day11: DayProtocol {
         for (y, row) in input.enumerated() {
             grid.append([])
 
-            for (x, char) in row.enumerated() {
+            for char in row {
                 let val = Int(String(char))!
                 grid[y].append(val)
             }
@@ -85,14 +85,14 @@ struct Y21Day11: DayProtocol {
 
         return g
     }
-    
+
     func part2(_ input: [String]) -> Int {
         var grid: [[Int]] = []
 
         for (y, row) in input.enumerated() {
             grid.append([])
 
-            for (x, char) in row.enumerated() {
+            for char in row {
                 let val = Int(String(char))!
                 grid[y].append(val)
             }
@@ -110,7 +110,5 @@ struct Y21Day11: DayProtocol {
                 return i
             }
         }
-
-        return 0
     }
 }

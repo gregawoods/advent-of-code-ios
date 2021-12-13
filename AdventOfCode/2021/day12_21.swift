@@ -40,7 +40,7 @@ struct Y21Day12: DayProtocol {
                 caves[caveB] = [caveA]
             }
         }
-        
+
         return caves
     }
 
@@ -60,7 +60,7 @@ struct Y21Day12: DayProtocol {
             if connection == "end" {
                 // we're done
                 pathsFound.append(p)
-            } else if connection.isAllLowercase && pathSoFar.contains(connection) {
+            } else if connection.first!.isLowercase && pathSoFar.contains(connection) {
                 // don't go into the same small cave twice
                 continue
             } else {
@@ -80,12 +80,15 @@ struct Y21Day12: DayProtocol {
         return result.count
     }
 
-    func explorePathsV2(current: String, caves: CaveSystem, pathSoFar: [String]) -> [[String]] {
+    func explorePathsV2(current: String, caves: CaveSystem, pathSoFar: [String], repeated: Bool = false) -> [[String]] {
         var p = pathSoFar
         p.append(current)
 
+        var r = repeated
+        if !r { r = hasRepeatedSmallCave(paths: p) }
+
         var pathsFound: [[String]] = []
-        
+
         for connection in caves[current]! {
             if connection == "start" {
                 // you cant go back to start
@@ -93,39 +96,35 @@ struct Y21Day12: DayProtocol {
             } else if connection == "end" {
                 // we're done
                 pathsFound.append(p)
-            } else if connection.isAllLowercase && !shouldVisitSmallCave(smallCave: connection, pathsSoFar: p) {
+            } else if connection.first!.isLowercase && r && p.contains(connection) {
                 // don't go into the same small cave twice
                 continue
             } else {
                 // keep exploring
-                pathsFound.append(
-                    contentsOf: explorePathsV2(current: connection, caves: caves, pathSoFar: p)
-                )
+                if r {
+                    pathsFound.append(
+                        contentsOf: explorePaths(current: connection, caves: caves, pathSoFar: p)
+                    )
+                } else {
+                    pathsFound.append(
+                        contentsOf: explorePathsV2(current: connection, caves: caves, pathSoFar: p, repeated: r)
+                    )
+                }
             }
         }
 
         return pathsFound
     }
 
-    func shouldVisitSmallCave(smallCave: String, pathsSoFar: [String]) -> Bool {
-        if hasRepeatedSmallCave(paths: pathsSoFar) {
-            return !pathsSoFar.contains(smallCave)
-        } else {
-            return true
-        }
-    }
-
     func hasRepeatedSmallCave(paths: [String]) -> Bool {
-        let lowerCaseCaves = paths.filter { $0.isAllLowercase }
-        var counts: [String: Int] = [:]
-  
-        for item in lowerCaseCaves {
-            counts[item] = (counts[item] ?? 0) + 1
+        var p2: [String] = []
 
-            if counts[item]! > 1 { return true }
+        for item in paths {
+            if item.first!.isUppercase { continue }
+            if p2.contains(item) { return true }
+            p2.append(item)
         }
 
         return false
     }
 }
-
