@@ -45,11 +45,29 @@ class Y21Day13Tests: XCTestCase {
     }
 
     func testPart2Sample() {
-        XCTAssertEqual(Y21Day13().part2(sample), 0)
+        XCTAssertEqual(
+            Y21Day13().part2(sample),
+            """
+            #####
+            #...#
+            #...#
+            #...#
+            #####
+            """
+        )
     }
 
     func testPart2() throws {
-        // string printed to console
-        XCTAssertEqual(Y21Day13().part2(input), 0)
+        XCTAssertEqual(
+            Y21Day13().part2(input),
+            """
+            ####..##..####.#..#.#....#..#.####.####
+            #....#..#.#....#..#.#....#..#....#.#...
+            ###..#....###..####.#....####...#..###.
+            #....#....#....#..#.#....#..#..#...#...
+            #....#..#.#....#..#.#....#..#.#....#...
+            ####..##..#....#..#.####.#..#.####.#...
+            """
+        )
     }
 }

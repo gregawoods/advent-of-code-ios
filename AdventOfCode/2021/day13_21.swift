@@ -17,7 +17,7 @@ extension Set where Element == Point {
     func toString() -> String {
         return (0...maxY).map { y in
             (0...maxX).map { x in
-                contains(Point(x, y)) ? "#" : "."
+                contains(x, y) ? "#" : "."
             }.joined()
         }.joined(separator: "\n")
     }
@@ -49,13 +49,9 @@ struct Y21Day13: DayProtocol {
 
     func part1(_ input: [String]) -> Int {
         var (grid, folds) = parseInput(input)
-        let fold = folds[0]
 
-        if fold.horizontal {
-            grid = foldHorizontally(grid: grid, at: fold.at)
-        } else {
-            grid = foldVertically(grid: grid, at: fold.at)
-        }
+        let fn = folds[0].horizontal ? foldHorizontally : foldVertically
+        grid = fn(grid, folds[0].at)
 
         return grid.count
     }
@@ -90,19 +86,14 @@ struct Y21Day13: DayProtocol {
         return g
     }
 
-    func part2(_ input: [String]) -> Int {
+    func part2(_ input: [String]) -> String {
         var (grid, folds) = parseInput(input)
 
         for fold in folds {
-            if fold.horizontal {
-                grid = foldHorizontally(grid: grid, at: fold.at)
-            } else {
-                grid = foldVertically(grid: grid, at: fold.at)
-            }
-            print("grid:")
-            print(grid.toString())
+            let fn = fold.horizontal ? foldHorizontally : foldVertically
+            grid = fn(grid, fold.at)
         }
 
-        return 0
+        return grid.toString()
     }
 }
