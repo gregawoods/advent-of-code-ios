@@ -67,4 +67,8 @@ extension Set where Element: Coordinate {
     func contains(_ x: Int, _ y: Int) -> Bool {
         return contains(Element(x, y))
     }
+    func findBy(_ x: Int, _ y: Int) -> Element? {
+        let el = Element(x, y)
+        return first { $0 == el }
+    }
 }

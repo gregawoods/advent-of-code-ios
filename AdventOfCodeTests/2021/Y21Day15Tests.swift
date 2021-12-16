@@ -34,12 +34,10 @@ class Y21Day15Tests: XCTestCase {
     }
 
     func testPart2Sample() {
-        XCTAssertEqual(
-            Y21Day15().part2(sample), 0)
+        XCTAssertEqual(Y21Day15().part2(sample), 315)
     }
 
     func testPart2() throws {
-        XCTAssertEqual(
-            Y21Day15().part2(input), 0)
+        XCTAssertEqual(Y21Day15().part2(input), 2998)
     }
 }

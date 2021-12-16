@@ -9,101 +9,131 @@ import Foundation
 
 struct Y21Day15: DayProtocol {
 
-    struct Vert {
+    class Vert: Equatable, Hashable {
+        let x: Int
+        let y: Int
         let weight: Int
-        var visited = false
         var distance = Int.max
+        var visited = false
 
-        init(weight: Int) {
+        init(_ x: Int, _ y: Int, weight: Int) {
+            self.x = x
+            self.y = y
             self.weight = weight
         }
+
+        static func == (lhs: Vert, rhs: Vert) -> Bool {
+            return lhs.x == rhs.x && lhs.y == rhs.y
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(x)
+            hasher.combine(y)
+        }
+
+        func neighbors(in grid: Grid) -> [Vert] {
+            let nearby = [
+                (x - 1, y),
+                (x + 1, y),
+                (x, y - 1),
+                (x, y + 1)
+            ]
+            return nearby.map { grid.find($0, $1) }.filter { $0 != nil }.map { $0! }
+        }
     }
 
-    typealias Position = (x: Int, y: Int)
+    class Grid {
+        let verts: [[Vert]]
 
-    func findLowestUnvisited(verts: [[Vert]]) -> Position {
-        var cx = 0
-        var cy = 0
+        init(source: [[Vert]]) {
+            self.verts = source
+        }
+
+        lazy var width: Int = { return verts[0].count }()
+        lazy var height: Int = { return verts.count }()
+        lazy var count: Int = { return verts.flatMap { $0 }.count }()
+
+        func find(_ x: Int, _ y: Int) -> Vert? {
+            if x < 0 || y < 0 || x >= width || y >= height {
+                return nil
+            }
+            return verts[y][x]
+        }
+    }
+
+    func findLowestUnvisited(verts: Set<Vert>) -> Vert {
+        var it: Vert = verts.randomElement()!
         var min = Int.max
 
-        for y in 0...(verts.count - 1) {
-            for x in 0...(verts[y].count - 1) {
-                if !verts[y][x].visited && verts[y][x].distance < min {
-                    cx = x
-                    cy = y
-                    min = verts[y][x].distance
-                }
-            }
+        for v in verts where v.distance < min {
+            it = v
+            min = it.distance
         }
 
-        return (cx, cy)
+        return it
     }
 
-    func dijkstra(grid source: [[Vert]]) -> Int {
-        var grid = source
+    func dijkstra(grid: Grid) -> Int {
+        grid.find(0, 0)!.distance = 0
 
-        grid[0][0].visited = true
-        grid[0][0].distance = 0
+        var toVisit: Set<Vert> = [grid.find(0, 0)!]
 
-        let iterations = grid.count * grid[0].count
+        for _ in 0...(grid.count - 1) {
+            let current = findLowestUnvisited(verts: toVisit)
 
-        for _ in 0...(iterations - 1) {
-            let position = findLowestUnvisited(verts: grid)
-            grid[position.y][position.x].visited = true
+            toVisit.remove(current)
+            current.visited = true
 
-            if position.y == grid.count - 1 && position.x == grid[0].count - 1 {
-                break
-            }
+            for neighbor in current.neighbors(in: grid) {
+                if neighbor.visited { continue }
 
-            let nearby: [Position] = [
-                (position.x - 1, position.y),
-                (position.x + 1, position.y),
-                (position.x, position.y - 1),
-                (position.x, position.y + 1)
-            ].filter { (x, y) in
-                return x >= 0 && y >= 0 && x < grid[0].count && y < grid.count && !grid[y][x].visited
-            }
-
-            for neighbor in nearby {
-                let newDistance = grid[position.y][position.x].distance + grid[neighbor.y][neighbor.x].weight
-
-                if newDistance < grid[neighbor.y][neighbor.x].distance {
-                    grid[neighbor.y][neighbor.x].distance = newDistance
+                let newDistance = current.distance + neighbor.weight
+                if newDistance < neighbor.distance {
+                    neighbor.distance = newDistance
+                    toVisit.insert(neighbor)
                 }
             }
         }
 
-        return grid[grid.count - 1][grid[0].count - 1].distance
+        return grid.find(grid.width - 1, grid.height - 1)!.distance
     }
 
     func part1(_ input: [String]) -> Int {
-        var grid = [[Vert]]()
+        var verts = [[Vert]]()
 
-        for row in input {
-            grid.append(
-                row.map({ char in
-                    return Vert(weight: Int(String(char))!)
+        for y in 0...(input.count - 1) {
+            verts.append(
+                input[y].enumerated().map({ (x, char) in
+                    let weight = Int(String(char))!
+                    return Vert(x, y, weight: weight)
                 })
             )
         }
+
+        let grid = Grid(source: verts)
 
         return dijkstra(grid: grid)
     }
 
     func part2(_ input: [String]) -> Int {
-        var grid: [[Vert]] = Array(repeating: [], count: input.count * 5)
+        var verts: [[Vert]] = Array(repeating: [], count: input.count * 5)
 
         for i in 0...4 {
             for (y, row) in input.enumerated() {
                 for j in 0...4 {
-                    for char in row {
+                    for (x, char) in row.enumerated() {
                         var weight = Int(String(char))! + i + j
                         weight = weight <= 9 ? weight : weight % 9
-                        grid[i * input.count + y].append(Vert(weight: weight))
+                        let dx = j * input[y].count + x
+                        let dy = i * input.count + y
+
+                        verts[i * input.count + y].append(Vert(dx, dy, weight: weight))
                     }
                 }
             }
         }
+
+        let grid = Grid(source: verts)
 
         return dijkstra(grid: grid)
     }
