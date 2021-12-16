@@ -15,6 +15,10 @@ struct Day20: DayProtocol {
         var y: Int
         var active: Bool
 
+        init(_ x: Int, _ y: Int) {
+            self.init(x, y, false)
+        }
+
         init(_ x: Int = 0, _ y: Int = 0, _ active: Bool = false) {
             self.x = x
             self.y = y

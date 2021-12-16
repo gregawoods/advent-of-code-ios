@@ -48,15 +48,20 @@ struct Y21Day14: DayProtocol {
 
         var counts: [Character: Int] = [:]
 
+        // thanks @thezanke
+        counts[input[0][0]] = 1
         pairs.forEach { key, val in
-            counts[key[0], default: 0] += val
             counts[key[1], default: 0] += val
         }
+        return counts.values.max()! - counts.values.min()!
 
-        let max = Int(round(Double(counts.values.max()!) / 2.0))
-        let min = Int(round(Double(counts.values.min()!) / 2.0))
-
-        return max - min
+//        pairs.forEach { key, val in
+//            counts[key[0], default: 0] += val
+//            counts[key[1], default: 0] += val
+//        }
+//        let max = Int(round(Double(counts.values.max()!) / 2.0))
+//        let min = Int(round(Double(counts.values.min()!) / 2.0))
+//        return max - min
     }
 
     func part1(_ input: [String]) -> Int {

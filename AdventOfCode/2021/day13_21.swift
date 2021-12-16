@@ -7,25 +7,6 @@
 
 import Foundation
 
-extension Set where Element == Point {
-    var maxX: Int {
-        return map { $0.x }.max()!
-    }
-    var maxY: Int {
-        return map { $0.y }.max()!
-    }
-    func toString() -> String {
-        return (0...maxY).map { y in
-            (0...maxX).map { x in
-                contains(x, y) ? "#" : "."
-            }.joined()
-        }.joined(separator: "\n")
-    }
-    func contains(_ x: Int, _ y: Int) -> Bool {
-        return contains(Point(x, y))
-    }
-}
-
 struct Y21Day13: DayProtocol {
 
     typealias Fold = (horizontal: Bool, at: Int)

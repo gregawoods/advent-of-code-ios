@@ -7,9 +7,11 @@
 
 import Foundation
 
-protocol Coordinate {
+protocol Coordinate: Hashable {
     var x: Int { get set }
     var y: Int { get set }
+
+    init(_ x: Int, _ y: Int)
 }
 
 extension Coordinate {
@@ -38,12 +40,31 @@ extension Array where Element: Coordinate {
     }
 }
 
-struct Point: Coordinate, Equatable, Hashable {
+struct Point: Coordinate {
     var x: Int
     var y: Int
 
     init(_ x: Int = 0, _ y: Int = 0) {
         self.x = x
         self.y = y
+    }
+}
+
+extension Set where Element: Coordinate {
+    var maxX: Int {
+        return map { $0.x }.max()!
+    }
+    var maxY: Int {
+        return map { $0.y }.max()!
+    }
+    func toString() -> String {
+        return (0...maxY).map { y in
+            (0...maxX).map { x in
+                contains(x, y) ? "#" : "."
+            }.joined()
+        }.joined(separator: "\n")
+    }
+    func contains(_ x: Int, _ y: Int) -> Bool {
+        return contains(Element(x, y))
     }
 }
