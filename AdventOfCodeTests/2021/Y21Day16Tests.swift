@@ -18,8 +18,8 @@ class Y21Day16Tests: XCTestCase {
         let packet = Y21Day16().readPacket(&bits)!
 
         XCTAssertEqual(packet.version, 6)
-        XCTAssertEqual(packet.type, 4)
-        XCTAssertEqual(packet.value, 2021)
+        XCTAssertEqual(packet.type, .literal)
+        XCTAssertEqual(packet.literalValue, 2021)
     }
 
     func testComplexPacket() {
@@ -27,11 +27,11 @@ class Y21Day16Tests: XCTestCase {
         let packet = Y21Day16().readPacket(&bits)!
 
         XCTAssertEqual(packet.version, 1)
-        XCTAssertEqual(packet.type, 6)
-        XCTAssertEqual(packet.value, nil)
+        XCTAssertEqual(packet.type, .lessThan)
+        XCTAssertEqual(packet.literalValue, nil)
         XCTAssertEqual(packet.subPackets.count, 2)
-        XCTAssertEqual(packet.subPackets[0].value, 10)
-        XCTAssertEqual(packet.subPackets[1].value, 20)
+        XCTAssertEqual(packet.subPackets[0].literalValue, 10)
+        XCTAssertEqual(packet.subPackets[1].literalValue, 20)
     }
 
     func testMoreComplexPacket() {
@@ -39,12 +39,12 @@ class Y21Day16Tests: XCTestCase {
         let packet = Y21Day16().readPacket(&bits)!
 
         XCTAssertEqual(packet.version, 7)
-        XCTAssertEqual(packet.type, 3)
-        XCTAssertEqual(packet.value, nil)
+        XCTAssertEqual(packet.type, .max)
+        XCTAssertEqual(packet.literalValue, nil)
         XCTAssertEqual(packet.subPackets.count, 3)
-        XCTAssertEqual(packet.subPackets[0].value, 1)
-        XCTAssertEqual(packet.subPackets[1].value, 2)
-        XCTAssertEqual(packet.subPackets[2].value, 3)
+        XCTAssertEqual(packet.subPackets[0].literalValue, 1)
+        XCTAssertEqual(packet.subPackets[1].literalValue, 2)
+        XCTAssertEqual(packet.subPackets[2].literalValue, 3)
     }
 
     func testPart1Sample() {
@@ -59,10 +59,17 @@ class Y21Day16Tests: XCTestCase {
     }
 
     func testPart2Sample() {
-        XCTAssertEqual(Y21Day16().part2(sample), 0)
+        XCTAssertEqual(Y21Day16().part2("C200B40A82"), 3)
+        XCTAssertEqual(Y21Day16().part2("04005AC33890"), 54)
+        XCTAssertEqual(Y21Day16().part2("880086C3E88112"), 7)
+        XCTAssertEqual(Y21Day16().part2("CE00C43D881120"), 9)
+        XCTAssertEqual(Y21Day16().part2("D8005AC2A8F0"), 1)
+        XCTAssertEqual(Y21Day16().part2("F600BC2D8F"), 0)
+        XCTAssertEqual(Y21Day16().part2("9C005AC2F8F0"), 0)
+        XCTAssertEqual(Y21Day16().part2("9C0141080250320F1802104A08"), 1)
     }
 
     func testPart2() throws {
-        XCTAssertEqual(Y21Day16().part2(input), 0)
+        XCTAssertEqual(Y21Day16().part2(input), 1015320896946)
     }
 }
