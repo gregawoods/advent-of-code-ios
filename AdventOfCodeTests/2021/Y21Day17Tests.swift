@@ -22,7 +22,6 @@ class Y21Day17Tests: XCTestCase {
         XCTAssertEqual(Y21Day17().part1(sample), 45)
     }
 
-    // not 8256
     func testPart1() throws {
         XCTAssertEqual(Y21Day17().part1(input), 10011)
     }
