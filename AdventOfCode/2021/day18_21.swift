@@ -111,7 +111,7 @@ struct Y21Day18: DayProtocol {
 
         for (n, node) in allNodes.enumerated() {
             if node.depth >= 4 && !node.isRaw {
-                print("explode \(node.toString)")
+//                print("explode \(node.toString)")
 
                 // Add to the left
                 var k = n - 1
@@ -148,7 +148,7 @@ struct Y21Day18: DayProtocol {
         for node in allNodes {
             if let raw = node.rawValue, raw >= 10 {
                 // Split it into two rounded values
-                print("split! \(node.toString)")
+//                print("split! \(node.toString)")
                 let div = Double(node.rawValue!) / 2.0
                 node.left = Node(Int(floor(div)))
                 node.right = Node(Int(ceil(div)))
@@ -157,16 +157,16 @@ struct Y21Day18: DayProtocol {
             }
         }
 
-        print("done")
+//        print("done")
         return false
     }
 
     func processFully(node: Node) {
-        print(node.toString)
+//        print(node.toString)
 
         while true {
             let didWork = process(node: node)
-            print(node.toString)
+//            print(node.toString)
             if !didWork { break }
         }
     }
@@ -188,6 +188,17 @@ struct Y21Day18: DayProtocol {
     }
 
     func part2(_ input: [String]) -> Int {
-        return 1
+        var mag = 0
+
+        for (i, lineA) in input.enumerated() {
+            for (j, lineB) in input.enumerated() {
+                if i == j { continue }
+
+                let newMagnitude = add(a: lineA, b: lineB).magnitude
+                mag = newMagnitude > mag ? newMagnitude : mag
+            }
+        }
+
+        return mag
     }
 }
